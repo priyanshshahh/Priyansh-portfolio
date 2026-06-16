@@ -1,0 +1,22 @@
+{
+  "activeID" : "C75F96F7-FF91-45B9-8C47-B89520B2EA5F",
+  "configurations" : [
+    {
+      "buildConfiguration" : "Debug",
+      "destination" : {
+        "myMac" : {
+
+        }
+      },
+      "environmentVariables" : {
+
+      },
+      "id" : "C75F96F7-FF91-45B9-8C47-B89520B2EA5F",
+      "launchArguments" : [
+
+      ],
+      "name" : "Debug on My Mac",
+      "schemeName" : ""
+    }
+  ]
+}

@@ -1,0 +1,40 @@
+---
+title: "Can LLMs Manage a Stock Portfolio? My URECA Research"
+summary: "Building a SQL pipeline over WRDS data and pitting prompt-engineered LLM strategies (Gemini + Perplexity) against classical baselines — what worked, what didn't, and what the research paper concluded."
+date: "2025-10-10"
+tags: ["LLMs", "WRDS", "Prompt Engineering", "Research"]
+project: "generative-ai-portfolio-management"
+---
+
+## The question
+
+Large language models can summarize a 10-K, but can they make *allocation decisions* that hold up against classical quant baselines? That was the question behind my **URECA** (Undergraduate Research & Creative Activities) research paper.
+
+## The data pipeline
+
+Everything started with clean, point-in-time data. I built a **SQL pipeline over WRDS** (Wharton Research Data Services) to extract fundamentals and pricing without lookahead bias — the silent killer of finance research.
+
+<Callout title="Point-in-time discipline" variant="results">
+If your model "knows" a restated earnings number before it was public, your backtest is fiction. Most of the engineering effort went into making sure every feature was available at decision time — not after.
+</Callout>
+
+## The strategies
+
+I evaluated **prompt-engineered strategies** driving two model families:
+
+- **Gemini** — for structured reasoning over fundamentals.
+- **Perplexity API** — for retrieval-grounded context on each name.
+
+Each strategy was specified as a prompt template that turned raw financial context into a ranked set of allocation decisions, which were then backtested against the same universe.
+
+## What I found
+
+- **Prompt design dominates.** The gap between a naive prompt and a carefully structured one was larger than the gap between models.
+- **Grounding matters.** Retrieval-augmented context reduced hallucinated reasoning about companies.
+- **LLMs are strong at narrative, weak at calibration.** They rank plausibly but are overconfident — position sizing still needs a classical risk layer.
+
+The paper's conclusion: LLMs are a genuinely useful **idea-generation and reasoning layer**, but they belong *inside* a disciplined quant pipeline, not in place of one.
+
+## Takeaway
+
+The most transferable skill wasn't prompt-wrangling — it was treating an LLM like any other noisy estimator: measure it honestly, bound its confidence, and never let it size the trade alone.

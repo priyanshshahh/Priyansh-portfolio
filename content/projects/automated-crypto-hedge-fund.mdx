@@ -1,0 +1,42 @@
+---
+title: Automated Crypto Hedge Fund (CHF+ X)
+summary: End-to-end forecasting pipeline with walk-forward validation and HRP allocation.
+date: Aug 2025
+tags: [XGBoost, LSTM, vectorbt, Docker, APScheduler]
+---
+
+## Executive Summary
+
+CHF+ X is an autonomous crypto hedge fund framework combining gradient boosting and deep learning forecasts with hierarchical risk parity allocation, orchestrated through containerized scheduling infrastructure.
+
+## Problem & Constraints
+
+Crypto markets demand multi-horizon forecasting across a Top-100 asset universe while accounting for feature decay, realistic trading frictions, and dynamic risk allocation under volatile regime shifts.
+
+<Callout title="Architecture" variant="architecture">
+APScheduler ingests market and on-chain data → Feature engineering with decay tracking → XGBoost + LSTM ensemble → HRP/Top-K allocation → vectorbt backtesting engine.
+</Callout>
+
+## Methodology
+
+- Engineered walk-forward validation with Optuna hyperparameter tuning
+- Implemented dynamic Feature Decay tracking to down-weight declining signals
+- Deployed Hierarchical Risk Parity and Top-K allocation within vectorbt
+- Containerized pipeline with Docker and APScheduler for autonomous execution
+
+## Results & Metrics
+
+| Metric | Result |
+|--------|--------|
+| Universe | Top-100 crypto assets |
+| Models | XGBoost + LSTM ensemble |
+| Tuning | Optuna hyperparameter search |
+| Allocation | HRP + Top-K |
+
+## Tech Stack
+
+Python, XGBoost, LSTM, vectorbt, Optuna, Docker, APScheduler
+
+## Future Work
+
+Live paper trading integration, on-chain alpha signal expansion, and regime-switching model ensembles.

@@ -1,0 +1,43 @@
+---
+title: Generative AI in Stock Portfolio Management
+summary: LLM-driven portfolio construction with WRDS data pipelines and prompt-engineered strategies.
+date: Oct 2025
+tags: [Python, LLMs, Perplexity API, WRDS, SQL]
+---
+
+## Executive Summary
+
+This research project engineers an end-to-end pipeline that extracts institutional-grade equity data from WRDS, integrates Perplexity and Gemini APIs for portfolio construction, and evaluates prompt-engineered investment strategies through rigorous backtesting and index compliance validation.
+
+## Problem & Constraints
+
+Traditional portfolio construction relies on static factor models. This project explores whether large language models can synthesize heterogeneous financial signals into actionable allocation decisions while maintaining index compliance, risk constraints, and reproducible evaluation methodology.
+
+<Callout title="Architecture" variant="architecture">
+The system follows a three-stage pipeline: data extraction (SQL/WRDS), LLM signal generation (Perplexity + Gemini), and portfolio validation with rebalancing simulation.
+</Callout>
+
+## Methodology
+
+- Built SQL pipelines to extract and clean WRDS equity fundamentals and returns data
+- Designed prompt templates for sector allocation, risk budgeting, and rebalancing decisions
+- Implemented Portfolio Validation and Cleaning framework ensuring complete index compliance
+- Executed Return Computation and Portfolio Rebalancing with drawdown-aware risk rules
+- Authored URECA research paper evaluating systematic Tech sector concentration patterns
+
+## Results & Metrics
+
+| Metric | Result |
+|--------|--------|
+| Data Source | WRDS institutional database |
+| LLM APIs | Perplexity + Gemini |
+| Output | URECA research paper |
+| Key Finding | Peak Sharpe ratios with systematic sector concentration |
+
+## Tech Stack
+
+Python, SQL, WRDS, Perplexity API, Gemini API, pandas, portfolio analytics
+
+## Future Work
+
+Extend to multi-asset universes, integrate real-time news sentiment, and benchmark against traditional factor models with walk-forward validation.

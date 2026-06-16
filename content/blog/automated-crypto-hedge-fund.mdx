@@ -1,0 +1,46 @@
+---
+title: "How I Built an Automated Crypto Hedge Fund"
+summary: "An end-to-end forecasting and allocation pipeline — from feature engineering across the top-100 universe to walk-forward validation, Optuna tuning, and Hierarchical Risk Parity allocation, all containerized and scheduled."
+date: "2025-08-20"
+tags: ["Quant", "XGBoost", "LSTM", "vectorbt", "Docker"]
+project: "automated-crypto-hedge-fund"
+---
+
+## Why build it
+
+Most "crypto trading bots" are a single model bolted onto an exchange API. I wanted the opposite: a disciplined, reproducible research pipeline that treats allocation as seriously as prediction — the kind of system a real quant desk would trust to run unattended.
+
+The result is **CHF+ X**: an automated pipeline that forecasts returns across the top-100 crypto universe, validates honestly with walk-forward analysis, and allocates capital with Hierarchical Risk Parity.
+
+<Callout title="The core idea" variant="architecture">
+Prediction is only half the problem. A model with a great Sharpe in backtest still blows up if you size positions naively. CHF+ X separates **signal generation** from **risk allocation**, and tests both under realistic, leakage-free conditions.
+</Callout>
+
+## Architecture
+
+The pipeline runs in five stages:
+
+1. **Ingestion** — pull OHLCV + on-chain data for the top-100 assets, store as Parquet.
+2. **Feature engineering** — momentum, volatility, cross-sectional rank, and regime features.
+3. **Forecasting** — an ensemble of **XGBoost** (cross-sectional) and **LSTM** (sequential) models.
+4. **Validation** — strict **walk-forward** splits so the model only ever sees the past.
+5. **Allocation** — **Hierarchical Risk Parity (HRP)** to build a diversified, risk-balanced book.
+
+## Methodology
+
+| Stage | Tooling | Why |
+|-------|---------|-----|
+| Tuning | Optuna | Bayesian search over model + feature hyperparameters |
+| Backtesting | vectorbt | Vectorized, fast, realistic fills and fees |
+| Allocation | HRP | Avoids the instability of mean-variance optimization |
+| Orchestration | APScheduler + Docker | Reproducible, scheduled, unattended runs |
+
+Walk-forward validation was the single most important decision. It's slower and gives less flattering numbers than a random split — which is exactly the point. The metrics you get are the ones you can actually trust out of sample.
+
+## What I'd do next
+
+- Add a regime-detection layer to switch model weights in different volatility states.
+- Stream live execution through a paper-trading venue before any real capital.
+- Expand the on-chain feature set with mempool and flow data.
+
+The biggest lesson: **the boring parts — validation discipline and risk allocation — are where the edge actually lives.**

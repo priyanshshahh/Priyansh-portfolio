@@ -1,0 +1,42 @@
+---
+title: Fraudulent Job Posting Detection
+summary: NLP pipeline achieving 96.5% accuracy with hybrid TF-IDF and VADER features.
+date: Oct 2024
+tags: [Python, NLP, Scikit-Learn, Dash]
+---
+
+## Executive Summary
+
+A fraud detection system that classifies job postings as legitimate or fraudulent using hybrid text and metadata features, deployed with a real-time Dash dashboard for probability visualization.
+
+## Problem & Constraints
+
+Online job platforms face growing volumes of scam postings. The system must achieve high accuracy on imbalanced text classification while providing interpretable fraud probability scores in real time.
+
+<Callout title="Results" variant="results">
+Achieved 96.5% classification accuracy using Multinomial Naive Bayes with hybrid TF-IDF and VADER sentiment features.
+</Callout>
+
+## Methodology
+
+- Architected end-to-end fraud detection pipeline with text and metadata feature extraction
+- Engineered hybrid TF-IDF vectorization combined with VADER sentiment scoring
+- Trained Multinomial Naive Bayes classifier with cross-validation
+- Deployed real-time Dash dashboard for fraud probability visualization
+
+## Results & Metrics
+
+| Metric | Result |
+|--------|--------|
+| Accuracy | 96.5% |
+| Features | TF-IDF + VADER |
+| Classifier | Multinomial Naive Bayes |
+| Dashboard | Real-time Dash |
+
+## Tech Stack
+
+Python, Scikit-Learn, NLTK/VADER, TF-IDF, Dash, Plotly
+
+## Future Work
+
+Deep learning text classifiers, multi-language support, and API integration for job board platforms.

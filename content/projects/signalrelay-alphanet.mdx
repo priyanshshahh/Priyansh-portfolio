@@ -1,0 +1,41 @@
+---
+title: SignalRelay / Alphanet Core
+summary: Distributed network of Python AI agents for quantitative research and signal generation.
+date: "2025"
+tags: [Python, AI Agents, Quant Research]
+---
+
+## Executive Summary
+
+SignalRelay is a distributed network of Python AI agents that collaborate on quantitative research, signal generation, and portfolio management tasks across multiple nodes.
+
+## Problem & Constraints
+
+Quantitative research workflows involve parallel signal discovery, backtesting, and portfolio rebalancing — requiring orchestration across distributed agents with fault tolerance.
+
+<Callout title="Architecture" variant="architecture">
+Agent coordinator → task queue → specialized worker agents (data, signal, portfolio) → shared signal store → execution relay.
+</Callout>
+
+## Methodology
+
+- Designed multi-agent architecture with role-specialized Python workers
+- Implemented signal relay protocol for cross-agent communication
+- Built shared datastore for alpha signals and backtest results
+- Orchestrated parallel research tasks with monitoring and retry logic
+
+## Results & Metrics
+
+| Metric | Result |
+|--------|--------|
+| Architecture | Distributed multi-agent |
+| Domain | Alpha signal generation |
+| Language | Python |
+
+## Tech Stack
+
+Python, async task queues, agent frameworks, PostgreSQL/Parquet storage
+
+## Future Work
+
+Kubernetes orchestration, LLM-powered agent reasoning, and live trading integration.

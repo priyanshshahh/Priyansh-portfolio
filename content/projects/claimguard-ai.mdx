@@ -1,0 +1,41 @@
+---
+title: ClaimGuard-AI
+summary: Full-stack claims processing platform with DuckDB analytics backend.
+date: "2025"
+tags: [Next.js, React, Python, DuckDB]
+---
+
+## Executive Summary
+
+ClaimGuard-AI is a full-stack platform for processing, validating, and analyzing insurance claims with a Next.js frontend and Python analytics backend powered by DuckDB for high-performance analytical queries.
+
+## Problem & Constraints
+
+Claims processing requires fast ingestion of heterogeneous documents, rule-based validation, and analytical dashboards — all while maintaining audit trails and data privacy.
+
+<Callout title="Architecture" variant="architecture">
+Next.js/React frontend → Python API layer → DuckDB analytical store → validation engine → reporting dashboard.
+</Callout>
+
+## Methodology
+
+- Designed modular full-stack architecture separating presentation, API, and analytics layers
+- Leveraged DuckDB for columnar analytical queries on claims datasets
+- Built validation pipelines for claim completeness and fraud flagging
+- Implemented responsive React dashboard for claims workflow management
+
+## Results & Metrics
+
+| Metric | Result |
+|--------|--------|
+| Stack | Full-stack Next.js + Python |
+| Database | DuckDB analytics engine |
+| Domain | Insurance claims processing |
+
+## Tech Stack
+
+Next.js, React, TypeScript, Python, DuckDB, REST APIs
+
+## Future Work
+
+LLM-powered document extraction, automated adjuster routing, and regulatory compliance modules.

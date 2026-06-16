@@ -1,0 +1,41 @@
+---
+title: Quant-Link
+summary: Real-time multiplayer financial MMORPG with Unreal Engine 5 and SpacetimeDB.
+date: "2025"
+tags: [Unreal Engine 5, Rust, SpacetimeDB, React]
+---
+
+## Executive Summary
+
+Quant-Link is a real-time multiplayer financial MMORPG where players navigate markets, execute trades, and compete in a persistent game world — built on Unreal Engine 5 with SpacetimeDB for state synchronization and a React web client.
+
+## Problem & Constraints
+
+Real-time multiplayer games require low-latency state sync, authoritative server logic, and cross-platform client access while embedding financial simulation mechanics.
+
+<Callout title="Architecture" variant="architecture">
+UE5 game client ↔ SpacetimeDB (Rust modules) ↔ authoritative game state → React web client for portfolio/trading UI.
+</Callout>
+
+## Methodology
+
+- Architected multiplayer networking with SpacetimeDB for real-time state replication
+- Built UE5 game world with financial trading mechanics and player progression
+- Developed Rust backend modules for trade execution and market simulation
+- Created React web client for auxiliary trading and analytics interfaces
+
+## Results & Metrics
+
+| Metric | Result |
+|--------|--------|
+| Engine | Unreal Engine 5 |
+| Backend | SpacetimeDB + Rust |
+| Mode | Real-time multiplayer |
+
+## Tech Stack
+
+Unreal Engine 5, Rust, SpacetimeDB, React, TypeScript
+
+## Future Work
+
+Tournament modes, leaderboard systems, and mobile companion app.

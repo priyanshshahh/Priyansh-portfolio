@@ -1,0 +1,41 @@
+---
+title: "Catching Fake Job Postings at 96.5% Accuracy"
+summary: "A hybrid NLP pipeline combining TF-IDF with VADER sentiment to flag fraudulent job listings — feature design, the model that won, and the real-time Dash dashboard that made it usable."
+date: "2024-10-05"
+tags: ["NLP", "Scikit-Learn", "TF-IDF", "Dash"]
+project: "fraudulent-job-posting-detection"
+---
+
+## The problem
+
+Fraudulent job postings are a real harm — they harvest personal data and money from people looking for work. The challenge is that scam listings are written to look legitimate. Surface keywords aren't enough; you need to model *how* the text is written, not just *what* it says.
+
+## Feature engineering
+
+The core insight was to combine two complementary signals:
+
+- **TF-IDF** captures the vocabulary and phrasing patterns of a posting.
+- **VADER sentiment** captures tone — scam posts often skew unnaturally positive ("urgent!", "guaranteed income!").
+
+<Callout title="Why hybrid features won" variant="architecture">
+TF-IDF alone confuses unusual-but-legitimate postings with fraud. Sentiment alone is too coarse. Together they separate "weird wording" from "manipulative tone" — and that combination is where the accuracy came from.
+</Callout>
+
+## The model
+
+After comparing several classifiers, the pipeline landed at **96.5% accuracy**. The winning setup balanced precision and recall so the system flags fraud aggressively without burying legitimate listings in false positives.
+
+| Metric | Result |
+|--------|--------|
+| Accuracy | 96.5% |
+| Features | TF-IDF + VADER |
+| Interface | Real-time Dash dashboard |
+
+## Making it usable
+
+A model in a notebook helps no one. I wrapped the pipeline in a **real-time Dash dashboard** where a posting can be pasted in and scored instantly, with the contributing signals shown — so the decision is explainable, not a black box.
+
+## Lessons
+
+- **Feature design beat model choice.** The hybrid feature set moved the needle more than swapping algorithms.
+- **Explainability is a feature.** Showing *why* something was flagged turned a classifier into a tool people trust.

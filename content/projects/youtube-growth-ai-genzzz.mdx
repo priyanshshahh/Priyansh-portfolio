@@ -1,0 +1,42 @@
+---
+title: YouTube Growth AI Chatbot (Genzzz)
+summary: RAG chatbot trained on YouTube transcripts using LangChain, FAISS, and Gemini 2.5 Flash.
+date: "2025"
+tags: [LangChain, FAISS, Gemini, RAG]
+---
+
+## Executive Summary
+
+Genzzz is a RAG-powered chatbot trained on YouTube creator transcripts, enabling conversational access to growth strategies, content insights, and channel analytics through LangChain, FAISS vector search, and Gemini 2.5 Flash.
+
+## Problem & Constraints
+
+YouTube growth knowledge is scattered across hours of video content. The system must retrieve relevant transcript segments and generate accurate, context-aware responses efficiently.
+
+<Callout title="Architecture" variant="architecture">
+Transcript ingestion → chunking + embedding → FAISS vector store → LangChain retrieval chain → Gemini 2.5 Flash generation.
+</Callout>
+
+## Methodology
+
+- Extracted and processed YouTube transcripts into searchable chunks
+- Built FAISS vector index for semantic retrieval
+- Orchestrated RAG pipeline with LangChain retrieval chains
+- Deployed Gemini 2.5 Flash for low-latency response generation
+
+## Results & Metrics
+
+| Metric | Result |
+|--------|--------|
+| Retrieval | FAISS vector search |
+| LLM | Gemini 2.5 Flash |
+| Framework | LangChain RAG |
+| Data | YouTube transcripts |
+
+## Tech Stack
+
+Python, LangChain, FAISS, Gemini API, YouTube Transcript API
+
+## Future Work
+
+Multi-channel support, real-time analytics integration, and fine-tuned embedding models.
