@@ -4,7 +4,6 @@ export const siteConfig = {
   description:
     "Applied Mathematics student building production ML systems, quantitative finance pipelines, and agentic AI architectures.",
   email: "priyansh.shah@stonybrook.edu",
-  phone: "917-680-5511",
   linkedin: "https://www.linkedin.com/in/-priyansh-shah/",
   github: "https://github.com/priyanshshahh",
   githubUsername: "priyanshshahh",

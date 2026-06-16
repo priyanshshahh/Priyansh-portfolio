@@ -22,7 +22,18 @@
 
 # misc
 .DS_Store
+**/.DS_Store
 *.pem
+
+# editor / AI tool config
+.cursor/
+.lingcode/
+.idea/
+.vscode/
+
+# stray / personal files (the displayed resume lives at public/resume.pdf)
+/*.pdf
+Priyansh_Shah_DS_ML*.pdf
 
 # debug
 npm-debug.log*

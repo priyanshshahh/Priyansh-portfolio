@@ -12,11 +12,6 @@ export interface SocialPost {
 }
 
 /**
- * Curated post feeds. LinkedIn and X both block third-party iframe embedding of
- * profiles/feeds, so these are hand-maintained cards that link out to the real
- * posts. Replace the `url`s with your actual post links and edit the copy.
- */
-/**
  * LinkedIn activity IDs for OFFICIAL post embeds. Individual posts (unlike
  * profiles/feeds) can be embedded. To add one: open the post → "..." menu →
  * "Embed this post", or copy the number after `activity-` in the post URL.
@@ -30,41 +25,10 @@ export const linkedInEmbeds: string[] = [
   "7449245675797561346", // FusionScope — global crisis risk tool
 ];
 
-export const linkedInPosts: SocialPost[] = [
-  {
-    date: "2025-10-12",
-    text: "Just presented my URECA research on Generative AI for stock portfolio management — evaluating prompt-engineered LLM strategies over WRDS data. Grateful to the Blockchain Business Lab for the support. 📈",
-    url: "https://www.linkedin.com/in/-priyansh-shah/",
-    likes: 142,
-    comments: 18,
-    tag: "Research",
-  },
-  {
-    date: "2025-08-22",
-    text: "Shipped CHF+ X — an automated crypto hedge-fund pipeline with walk-forward validation, Optuna tuning, and Hierarchical Risk Parity allocation. Validation discipline is where the edge lives.",
-    url: "https://www.linkedin.com/in/-priyansh-shah/",
-    likes: 96,
-    comments: 11,
-    tag: "Quant",
-  },
-  {
-    date: "2025-06-01",
-    text: "Honored to be selected as a Google Software Engineer Program (G-SWEP) Fellow from 2,000+ applicants. Excited for a year of mentorship on production-quality engineering.",
-    url: "https://www.linkedin.com/in/-priyansh-shah/",
-    likes: 230,
-    comments: 34,
-    tag: "Milestone",
-  },
-  {
-    date: "2025-03-15",
-    text: "Leading a team of 16 researchers at the Blockchain Business Lab taught me that the hardest part of ML isn't the model — it's the data pipeline and the validation. Sharing some lessons.",
-    url: "https://www.linkedin.com/in/-priyansh-shah/",
-    likes: 78,
-    comments: 9,
-    tag: "Leadership",
-  },
-];
-
+/**
+ * X / Twitter posts shown in the Socials feed. These are placeholder examples —
+ * replace the text and `url`s with your real posts (or clear the array).
+ */
 export const xPosts: SocialPost[] = [
   {
     date: "2025-10-05",
