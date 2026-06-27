@@ -1,41 +1,48 @@
 ---
 title: FusionScope
-summary: Macro stability monitoring platform with interactive globe map and risk alerts.
+summary: Global crisis fusion dashboard with interactive globe map and automated risk alerts.
 date: "2025"
-tags: [Full-stack, Geospatial, Risk Monitoring]
+tags: [React, TypeScript, FastAPI, Geospatial]
 ---
 
 ## Executive Summary
 
-FusionScope is a full-stack macro stability monitoring platform featuring an interactive globe map, multi-source risk indicators, and automated alert systems for geopolitical and economic instability events.
+FusionScope is a full-stack macro stability monitoring platform featuring an interactive globe map, multi-source risk indicators, and automated alert systems for geopolitical and economic instability. Live at [fusionscope.vercel.app](https://fusionscope.vercel.app/).
 
 ## Problem & Constraints
 
-Macro risk monitoring requires aggregating heterogeneous global indicators into a unified, geospatially-aware dashboard with timely alerting capabilities.
+Macro risk monitoring requires aggregating heterogeneous global indicators into a unified, geospatially-aware dashboard with timely alerting.
 
 <Callout title="Architecture" variant="architecture">
-Data ingestion layer → indicator normalization → geospatial index → globe visualization → alert engine → notification dispatch.
+Data ingestion → indicator normalization → geospatial index → globe visualization → fusion algorithm → alert engine → Vercel frontend + Python backend.
 </Callout>
 
 ## Methodology
 
-- Built full-stack platform with geospatial data pipeline
-- Designed interactive 3D/2D globe map for regional risk visualization
-- Implemented automated risk scoring from multi-source macro indicators
-- Created alert system with configurable thresholds and notification channels
+- Built React/TypeScript frontend with interactive 3D/2D globe visualization
+- Implemented fusion algorithm combining multi-source macro stability indicators
+- Deployed backend API with health checks, global metrics, and country-detail endpoints
+- Automated risk scoring with configurable alert thresholds
 
 ## Results & Metrics
 
 | Metric | Result |
 |--------|--------|
-| Visualization | Interactive globe map |
+| Live demo | fusionscope.vercel.app |
+| Viz | Interactive globe map |
 | Alerts | Automated risk notifications |
-| Scope | Global macro monitoring |
+| Stack | React + FastAPI + Vercel |
 
 ## Tech Stack
 
-Next.js, React, Python, geospatial libraries, REST APIs, WebSocket alerts
+React, TypeScript, Vite, shadcn/ui, Python FastAPI, Vercel
 
 ## Future Work
 
-ML-based anomaly detection, historical event correlation, and institutional API access.
+ML-based anomaly detection, historical event correlation, institutional API access.
+
+## Links
+
+- [Live demo](https://fusionscope.vercel.app/)
+- [GitHub](https://github.com/priyanshshahh/fusionscope)
+- [Production API](https://api.fusionscope.app)

@@ -1,0 +1,48 @@
+---
+title: FIP - Financial Insights Pipeline
+summary: Automated pipeline for ARK ETF holdings and SEC 13F filings with deterministic change-detection.
+date: "2025"
+tags: [Python, PostgreSQL, Parquet, FastAPI, EDGAR]
+---
+
+## Executive Summary
+
+The Financial Insights Pipeline (FIP) creates a reproducible, open pipeline to automatically gather institutional equity holdings from ARK Invest daily ETF CSVs and SEC EDGAR Form 13F filings, normalize them into a single schema, and calculate position-change events (NEW, INCREASE, DECREASE, EXIT).
+
+## Problem & Constraints
+
+Holdings data are inconsistent (tag variants, malformed tables), fragmented (XML/HTML/TXT/CSV), and lagged (13F quarterly). Manual workflows are error-prone and non-replicable. FIP eliminates manual scraping for ML feature engineering and academic research.
+
+<Callout title="Architecture" variant="architecture">
+Scheduler → Source Discovery → Downloader → Parsers → Validation → Transformer → Diff Engine → PostgreSQL + Parquet → REST API → Dashboard.
+</Callout>
+
+## Methodology
+
+- Ingested SEC EDGAR 13F-HR/A via company-submissions JSON and ARK ETF daily CSVs (ARKK, ARKG, ARKQ, ARKW, ARKX)
+- Normalized to unified schema with CUSIP/ticker mapping and amendment supersession handling
+- Implemented deterministic change-detection: NEW, EXIT, INCREASE, DECREASE with configurable thresholds
+- Built compliance-aware ingestion with rate limiting, exponential backoff, and auditable lineage
+
+## Results & Metrics
+
+| Metric | Target |
+|--------|--------|
+| Parse success | ≥95% on latest 4 quarters |
+| Ingest latency | under 30 min from public posting |
+| Change types | NEW / EXIT / INCREASE / DECREASE |
+| Downstream | CHF institutional-flow features |
+
+## Tech Stack
+
+Python, PostgreSQL, Parquet, FastAPI, SQLAlchemy, BeautifulSoup, lxml, Docker, pytest
+
+## Future Work
+
+Public GitHub release, Zenodo data snapshot DOI, JOSS software paper, stonyfinlab.org dashboard integration.
+
+## Links
+
+- [ARK Holdings (Cathie's Ark)](https://cathiesark.com/ark-funds-combined/complete-holdings)
+- [Dataroma 13F Tracker](https://www.dataroma.com/m/home.php)
+- [SEC EDGAR](https://www.sec.gov/edgar/search/)

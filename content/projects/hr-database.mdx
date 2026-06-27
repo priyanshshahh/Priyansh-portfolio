@@ -1,0 +1,48 @@
+---
+title: HR Database Management (BBL)
+summary: Lab pipeline converting HR .docx documents into structured CSV with contact enrichment.
+date: "2024"
+tags: [Python, Jupyter, BeautifulSoup, Pandas]
+---
+
+## Executive Summary
+
+An academic lab project for Dr. Danling Jiang's Blockchain Business Lab that processes HR-related .docx documents into structured CSV databases with publicly available contact information enrichment via web scraping.
+
+## Problem & Constraints
+
+Raw HR documents arrive as unstructured .docx files. The lab needed a reproducible workflow to extract professional profiles (name, affiliation, education, domain) and enrich with contact emails from public sources.
+
+<Callout title="Architecture" variant="architecture">
+Docx_editor.ipynb → HR_database.ipynb → HR scraping.ipynb → structured CSV with email provenance.
+</Callout>
+
+## Methodology
+
+- **Docx_editor:** Upload, merge, and clean multiple .docx files
+- **HR_database:** Parse cleaned text into structured fields (name, affiliation, PhD/Masters flags, domain)
+- **HR scraping:** Search Google Scholar, professional websites, and Google queries for public emails
+
+## Results & Metrics
+
+| Metric | Result |
+|--------|--------|
+| Pipeline stages | 3 notebooks |
+| Output | Structured U.S. professional CSV |
+| Email tracking | Source column per contact |
+| Repository | SBU-BBL/HR-Database (private) |
+
+## Tech Stack
+
+Python, Jupyter, python-docx, BeautifulSoup, Pandas, Google Colab
+
+## Future Work
+
+Automated scheduling, validation rules for email confidence scoring, integration with lab CRM.
+
+## Links
+
+- [SBU-BBL HR-Database](https://github.com/SBU-BBL/HR-Database)
+- [Docx editor notebook](https://github.com/SBU-BBL/HR-Database/blob/main/Docx_editor.ipynb)
+- [HR scraping notebook](https://github.com/SBU-BBL/HR-Database/blob/main/HR%20scraping.ipynb)
+- [HR database notebook](https://github.com/SBU-BBL/HR-Database/blob/main/HR_database.ipynb)

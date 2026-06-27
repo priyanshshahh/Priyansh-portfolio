@@ -12,13 +12,13 @@ export interface Certification {
 
 /**
  * Real recognitions and credentials. Swap in actual credential URLs / add new
- * certificates as you earn them — the carousel scales to any length.
+ * certificates as you earn them - the carousel scales to any length.
  */
 export const certifications: Certification[] = [
   {
     title: "Google Software Engineer Program (G-SWEP) Fellow",
     issuer: "Google",
-    date: "Sept 2024 – Jan 2026",
+    date: "Sept 2025 - Jan 2026",
     blurb:
       "Selected from 2,000+ applicants for 1:1 Google mentorship on production-quality Python engineering and algorithmic problem solving.",
     skills: ["Python", "DSA", "Dynamic Programming", "System Design"],
@@ -26,14 +26,32 @@ export const certifications: Certification[] = [
     url: "#",
   },
   {
-    title: "URECA Research Paper — Generative AI in Portfolio Management",
+    title: "URECA Research Paper - Generative AI in Portfolio Management",
     issuer: "Stony Brook University (URECA)",
-    date: "2025",
+    date: "Dec 2025",
     blurb:
-      "Authored an Undergraduate Research & Creative Activities paper evaluating prompt-engineered LLM strategies over WRDS market data.",
+      "Co-authored URECA paper with Jain, Lee, and Ha evaluating prompt-engineered Perplexity portfolios on S&P 500 equities via WRDS.",
     skills: ["LLMs", "WRDS", "Prompt Engineering", "Research"],
     badge: "UR",
     url: "#",
+  },
+  {
+    title: "Project Champion",
+    issuer: "Stony Brook University (VIP)",
+    date: "2026",
+    blurb:
+      "Awarded for SHF-ML - machine forecast disagreement research on the JKP dataset using HPC-scale Random Forest pipelines.",
+    skills: ["Empirical Asset Pricing", "HPC", "ML Research"],
+    badge: "PC",
+  },
+  {
+    title: "Best Researcher Award",
+    issuer: "Blockchain Business Lab",
+    date: "2025",
+    blurb:
+      "Recognized for leading lab research initiatives including CHF v2, FIP, and agentic financial signal extraction.",
+    skills: ["Leadership", "Quant Research", "ML"],
+    badge: "BR",
   },
   {
     title: "Excellent Research Award",
@@ -45,30 +63,60 @@ export const certifications: Certification[] = [
     badge: "ER",
   },
   {
-    title: "Global Excellence Scholarship",
+    title: "Global Excellence Award",
     issuer: "Stony Brook University",
-    date: "2022 – 2026",
+    date: "2022 - 2026",
     blurb:
-      "Merit scholarship awarded for sustained academic excellence in Applied Mathematics and Statistics.",
+      "Merit award for sustained academic excellence in Applied Mathematics and Statistics.",
     skills: ["Applied Math", "Statistics"],
     badge: "GE",
   },
   {
     title: "Dean's List",
     issuer: "Stony Brook University",
-    date: "2023 – 2025",
+    date: "2023 - 2025",
     blurb:
       "Maintained top academic standing across consecutive years in a quantitative, proof-heavy curriculum.",
     skills: ["Academics"],
     badge: "DL",
   },
   {
-    title: "Project Champion",
-    issuer: "Stony Brook University",
-    date: "2024",
+    title: "Equiply Hiring Tournament",
+    issuer: "NY Tech Week Hackathon",
+    date: "June 2026",
     blurb:
-      "Awarded for leading a standout applied data-science project from problem framing through deployment.",
-    skills: ["Data Science", "Project Leadership"],
-    badge: "PC",
+      "Built capital equipment enrichment dashboard processing 801 hospital asset rows with deterministic serial decoders.",
+    skills: ["React", "OpenAI API", "Data Engineering"],
+    badge: "EQ",
+    url: "https://github.com/priyanshshahh/equiply-enrichment",
+  },
+  {
+    title: "Cursor Boston × AIC Sports Hackathon",
+    issuer: "Athlix AI",
+    date: "2025",
+    blurb:
+      "Built ATHLIX AI - financial intelligence operating system for athlete capital risk forecasting.",
+    skills: ["Next.js", "Recharts", "Financial Modeling"],
+    badge: "AT",
+    url: "https://github.com/priyanshshahh/athlix-ai",
+  },
+  {
+    title: "SpacetimeDB Launchpad Hackathon",
+    issuer: "Quant-Link",
+    date: "2025",
+    blurb:
+      "Real-time multiplayer financial simulation game with Rust backend and React Three Fiber client.",
+    skills: ["SpacetimeDB", "Rust", "Three.js"],
+    badge: "QL",
+    url: "https://quantlink.vercel.app/",
+  },
+  {
+    title: "AIxBio Hackathon",
+    issuer: "ClaimGuard-AI",
+    date: "May 2026",
+    blurb:
+      "Agentic pre-submission claims risk engine with Nebius Gemma extraction, XGBoost scoring, and DuckDB knapsack prioritization.",
+    skills: ["FastAPI", "XGBoost", "Healthcare AI"],
+    badge: "CG",
   },
 ];

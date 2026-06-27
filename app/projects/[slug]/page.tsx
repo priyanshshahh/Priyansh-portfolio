@@ -4,7 +4,7 @@ import { PageTransition } from "@/components/layout/PageTransition";
 import { MdxContent } from "@/components/mdx/MdxContent";
 import { Badge } from "@/components/ui/Badge";
 import { Button } from "@/components/ui/Button";
-import { getProjectBySlug, projects } from "@/lib/data/projects";
+import { getProjectBySlug, getProjectLinks, projects } from "@/lib/data/projects";
 import { getCaseStudyBySlug } from "@/lib/mdx";
 
 export async function generateStaticParams() {
@@ -35,6 +35,8 @@ export default async function ProjectCaseStudyPage({
   const caseStudy = getCaseStudyBySlug(slug);
 
   if (!project || !caseStudy) notFound();
+
+  const links = getProjectLinks(project);
 
   return (
     <PageTransition>
@@ -87,22 +89,26 @@ export default async function ProjectCaseStudyPage({
             ))}
           </div>
 
-          <div className="flex flex-col gap-2">
-            {project.demoUrl && (
-              <Button
-                href={project.demoUrl}
-                external={project.demoUrl !== "#"}
-                className="w-full"
-              >
-                View Demo
-              </Button>
-            )}
-            {project.codePublic && project.codeUrl && (
-              <Button href={project.codeUrl} variant="secondary" external className="w-full">
-                View Code
-              </Button>
-            )}
-          </div>
+          {links.length > 0 && (
+            <div className="rounded-2xl border border-border bg-[var(--card-bg)] p-5">
+              <p className="font-mono text-xs uppercase tracking-widest text-accent mb-3">
+                Links
+              </p>
+              <div className="flex flex-col gap-2">
+                {links.map((link) => (
+                  <Button
+                    key={link.url}
+                    href={link.url}
+                    variant={link.label === "Live demo" ? "primary" : "secondary"}
+                    external
+                    className="w-full justify-center"
+                  >
+                    {link.label}
+                  </Button>
+                ))}
+              </div>
+            </div>
+          )}
         </aside>
       </div>
     </PageTransition>

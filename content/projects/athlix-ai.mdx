@@ -1,37 +1,47 @@
 ---
 title: Athlix AI
-summary: Interactive web app simulating long-term wealth trajectories for professional athletes.
+summary: Financial intelligence OS for athlete capital risk forecasting - Cursor Boston hackathon.
 date: "2025"
-tags: [Next.js, Financial Modeling, Simulation]
+tags: [Next.js, Recharts, Framer Motion, OpenRouter]
 ---
 
 ## Executive Summary
 
-Athlix AI is a Next.js interactive web application that models long-term wealth trajectories for professional athletes, accounting for contract structures, investment returns, tax implications, and lifestyle spending scenarios.
+ATHLIX AI is the financial intelligence layer for sports - forecasting career collapse, injury-linked earning decline, retirement liquidity failure, and contract instability. Built for the Cursor Boston × AIC × Hult International sports hackathon. Not fantasy sports or betting - a purpose-built risk terminal for agents, advisors, and front-office officers.
 
 ## Problem & Constraints
 
-Professional athletes face unique financial planning challenges — compressed earning windows, volatile income, and complex contract structures requiring accessible simulation tools.
+Professional athletes face unique financial planning challenges: compressed earning windows, volatile income, and complex contract structures requiring accessible simulation tools.
+
+<Callout title="Architecture" variant="architecture">
+Landing (ticker + search) → /dashboard/[slug] player terminal → deterministic mock risk engine → scenario simulator sliders → OpenRouter/DeepSeek AI analyst chat panel.
+</Callout>
 
 ## Methodology
 
-- Built interactive Next.js frontend with scenario sliders and visualization
-- Modeled wealth trajectories with Monte Carlo and deterministic projections
-- Incorporated contract structures, tax brackets, and investment return assumptions
-- Designed comparative scenario analysis for spending and investment strategies
+- Built cinematic Next.js 16 frontend with Framer Motion and Recharts
+- Deterministic mock engine produces stable, demo-safe risk numbers
+- Scenario simulator recomputes wealth charts, radar, and exposure bars in real time
+- Integrated Vercel AI SDK v6 with OpenRouter/DeepSeek for streaming analyst output
 
 ## Results & Metrics
 
 | Metric | Result |
 |--------|--------|
-| Framework | Next.js |
-| Domain | Athlete wealth planning |
-| UX | Interactive scenario modeling |
+| Hackathon | Cursor Boston × AIC |
+| Stack | Next.js 16 + Tailwind v4 |
+| Profiles | 5 hand-crafted analyst profiles |
+| AI | OpenRouter + DeepSeek |
 
 ## Tech Stack
 
-Next.js, React, TypeScript, financial modeling libraries, Chart.js/Recharts
+Next.js 16, TypeScript, Tailwind CSS v4, Framer Motion, Recharts, Vercel AI SDK, OpenRouter
 
 ## Future Work
 
-Agent/advisor matching, real contract data integration, and mobile app.
+Real contract data integration, agent/advisor matching, mobile companion app.
+
+## Links
+
+- [GitHub](https://github.com/priyanshshahh/athlix-ai)
+- [Local setup (README)](https://github.com/priyanshshahh/athlix-ai#local-setup)

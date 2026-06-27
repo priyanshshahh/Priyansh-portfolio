@@ -1,41 +1,48 @@
 ---
 title: Polymarket Sentiment Agent
-summary: Autonomous agent executing trades on Polymarket based on news sentiment and market analytics.
+summary: Bayesian news-sentiment agent for prediction markets with live demo at poly-agent.fly.dev.
 date: "2025"
-tags: [AI Agents, Polymarket, Sentiment Analysis]
+tags: [Python, Polymarket, Bayesian, FastAPI, React]
 ---
 
 ## Executive Summary
 
-An autonomous AI agent that monitors real-time news sentiment and CoinMarketCap analytics to identify mispriced prediction market opportunities on Polymarket and execute trades accordingly.
+An autonomous prediction-market agent that watches Polymarket markets and crypto news, uses an LLM purely as an NLP parser, then computes a deterministic Bayesian posterior in Python. The edge equals posterior minus market-implied prior. Live demo at [poly-agent.fly.dev](https://poly-agent.fly.dev/).
 
 ## Problem & Constraints
 
-Prediction markets require rapid synthesis of news events, sentiment signals, and market pricing — with strict risk controls and execution latency requirements.
+Most AI trading demos ask GPT for price predictions - LLMs are uncalibrated. This agent separates NLP parsing from quantitative decision-making, running in paper-trading mode with an x402 paywall on premium rationale endpoints.
 
 <Callout title="Architecture" variant="architecture">
-News ingestion → sentiment scoring → CMC market context → opportunity detection → risk checks → Polymarket execution.
+News RSS ingestion → LLM sentiment labeling → Bayesian posterior update → edge = posterior - market price → paper trader → FastAPI backend + React frontend.
 </Callout>
 
 ## Methodology
 
-- Built real-time news ingestion and sentiment analysis pipeline
-- Integrated CoinMarketCap analytics for cross-market context
-- Designed opportunity scoring model for prediction market mispricing
-- Implemented autonomous execution with position sizing and risk limits
+- Ingested real-time news via free RSS and Polymarket public APIs
+- LLM labels headline sentiment; Python computes calibrated Bayesian updates
+- Compared computed edge against market-implied probabilities
+- Deployed on Fly.io with Docker; Vite frontend with API proxy
 
 ## Results & Metrics
 
 | Metric | Result |
 |--------|--------|
-| Execution | Autonomous agent |
-| Signals | News + CoinMarketCap |
-| Market | Polymarket prediction markets |
+| Live demo | poly-agent.fly.dev |
+| Mode | Paper trading |
+| NLP | LLM parser only |
+| Math | Bayesian posterior |
 
 ## Tech Stack
 
-Python, sentiment analysis, Polymarket API, CoinMarketCap API, agent orchestration
+Python, FastAPI, React, Vite, Docker, Fly.io, Polymarket API
 
 ## Future Work
 
-Backtesting framework, multi-market expansion, and reinforcement learning for position sizing.
+Backtesting framework, multi-market expansion, reinforcement learning for position sizing.
+
+## Links
+
+- [Live demo](https://poly-agent.fly.dev/)
+- [GitHub](https://github.com/priyanshshahh/polymarket-sentiment-agent)
+- [API status](https://poly-agent.fly.dev/api/status)

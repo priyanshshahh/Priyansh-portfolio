@@ -1,0 +1,48 @@
+---
+title: PearPay (ETH Global)
+summary: Agent payments and escrow platform with Flow, FaceID, and Arc/Hedera smart contracts.
+date: "2025"
+tags: [Next.js, Solidity, iOS, Web3]
+---
+
+## Executive Summary
+
+PearPay is an agent payments and escrow platform developed during ETH Global, forked from mollybeach/pearpay with contributions for Flow integration, FaceID authentication, pay links, and Arc/Hedera escrow contracts. Live at [pearpay.vercel.app](https://pearpay.vercel.app/). Live at [pearpay.vercel.app](https://pearpay.vercel.app/).
+
+## Problem & Constraints
+
+Agent-to-agent and human-to-agent payments need secure, low-friction escrow with native mobile and web interfaces.
+
+<Callout title="Architecture" variant="architecture">
+Next.js web app + iOS iMessage/Apple Pay layer + Solidity escrow contracts (Arc + Hedera) + agent payment flows.
+</Callout>
+
+## Methodology
+
+- Extended PearPay fork with Flow and FaceID payment features
+- Built Arc and Hedera escrow smart contracts
+- Implemented thin native iOS layer for iMessage and Apple Pay integration
+- Added agent payment link generation and routing
+
+## Results & Metrics
+
+| Component | Technology |
+|-----------|-----------|
+| Web | Next.js app router |
+| Mobile | iOS native layer |
+| Contracts | Arc + Hedera escrow |
+| Event | ETH Global hackathon |
+
+## Tech Stack
+
+Next.js, Solidity, iOS/Swift, Web3, Apple Pay
+
+## Future Work
+
+Production security audit, multi-chain escrow, merchant onboarding.
+
+## Links
+
+- [Live demo](https://pearpay.vercel.app/)
+- [GitHub](https://github.com/priyanshshahh/pearpay)
+- [Upstream fork](https://github.com/mollybeach/pearpay)

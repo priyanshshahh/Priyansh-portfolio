@@ -1,17 +1,17 @@
-# Priyansh Shah — Portfolio
+# Priyansh Shah - Portfolio
 
 A premium, fintech-aesthetic developer portfolio for a Quantitative Systems Architect & Data Scientist. Built with the Next.js App Router, it features an interactive day/night "study desk" theme toggle, a finance-themed animated background, MDX case studies & blog, generated project cover art, live GitHub + LinkedIn feeds, and a moderated guestbook.
 
 ## ✨ Features
 
-- **Interactive study-desk hero** — a 2.5D illustration whose desk lamp toggles day/night mode (persisted, no flash).
+- **Interactive study-desk hero** - a 2.5D illustration whose desk lamp toggles day/night mode (persisted, no flash).
 - **Animated finance background** + count-up metrics, typewriter hero, and scroll reveals throughout.
-- **Projects** — filterable grid (Quant / ML / GenAI / Full-Stack) with a unique, deterministically **generated cover image** per project.
-- **Case studies & Blog** — MDX-powered long-form write-ups (`content/projects`, `content/blog`).
-- **About** — interactive work-experience timeline, skills bento, certifications carousel, and a live GitHub contribution calendar.
-- **Socials** — official embedded LinkedIn posts, an X feed, and live GitHub repositories.
-- **Contact** — a "send me a message" form, a connect sidebar, and a **moderated comments** guestbook (comments are public only after the owner approves them, enforced by Postgres Row-Level Security).
-- **SEO** — sitemap, robots, and per-page metadata.
+- **Projects** - filterable grid (Quant / ML / GenAI / Full-Stack) with a unique, deterministically **generated cover image** per project.
+- **Case studies & Blog** - MDX-powered long-form write-ups (`content/projects`, `content/blog`).
+- **About** - interactive work-experience timeline, skills bento, certifications carousel, and a live GitHub contribution calendar.
+- **Socials** - official embedded LinkedIn posts, an X feed, and live GitHub repositories.
+- **Contact** - a "send me a message" form, a connect sidebar, and a **moderated comments** guestbook (comments are public only after the owner approves them, enforced by Postgres Row-Level Security).
+- **SEO** - sitemap, robots, and per-page metadata.
 
 ## 🛠 Tech Stack
 
@@ -27,23 +27,23 @@ A premium, fintech-aesthetic developer portfolio for a Quantitative Systems Arch
 
 ```bash
 npm install
-npm run dev          # http://localhost:3000
+npm run dev # http://localhost:3000
 ```
 
 Other scripts: `npm run build`, `npm run start`, `npm run lint`.
 
 ## 🔑 Environment Variables
 
-The site runs fully without any configuration — the contact form falls back to opening your email client, and the guestbook shows a setup note. To enable sign-in, moderated comments, and a private message inbox, add Supabase keys to `.env.local`:
+The site runs fully without any configuration - the contact form falls back to opening your email client, and the guestbook shows a setup note. To enable sign-in, moderated comments, and a private message inbox, add Supabase keys to `.env.local`:
 
 ```bash
 NEXT_PUBLIC_SUPABASE_URL=your-supabase-project-url
 NEXT_PUBLIC_SUPABASE_ANON_KEY=your-supabase-anon-key
 ```
 
-`.env*` files are gitignored — never commit your keys.
+`.env*` files are gitignored - never commit your keys.
 
-## 🗄 Supabase Setup (optional — for comments & messages)
+## 🗄 Supabase Setup (optional - for comments & messages)
 
 1. Create a project at [supabase.com](https://supabase.com).
 2. In the SQL editor, run the migrations in order:
@@ -66,7 +66,7 @@ NEXT_PUBLIC_SUPABASE_ANON_KEY=your-supabase-anon-key
 | LinkedIn post embeds / X posts | `lib/data/social-posts.ts` |
 | Resume PDF | `public/resume.pdf` |
 
-> **Note:** the X posts in `lib/data/social-posts.ts` are placeholder examples — replace them with your real posts. `public/resume.pdf` is displayed publicly, so make sure it contains only information you're comfortable sharing.
+> **Note:** the X posts in `lib/data/social-posts.ts` are placeholder examples - replace them with your real posts. `public/resume.pdf` is displayed publicly, so make sure it contains only information you're comfortable sharing.
 
 ## ☁️ Deploy
 

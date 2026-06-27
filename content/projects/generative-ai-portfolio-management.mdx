@@ -1,43 +1,49 @@
 ---
 title: Generative AI in Stock Portfolio Management
-summary: LLM-driven portfolio construction with WRDS data pipelines and prompt-engineered strategies.
-date: Oct 2025
-tags: [Python, LLMs, Perplexity API, WRDS, SQL]
+summary: URECA paper evaluating Perplexity prompt-engineered S&P 500 portfolios via WRDS.
+date: Dec 2025
+tags: [Python, Perplexity API, WRDS, SQL, URECA]
 ---
 
 ## Executive Summary
 
-This research project engineers an end-to-end pipeline that extracts institutional-grade equity data from WRDS, integrates Perplexity and Gemini APIs for portfolio construction, and evaluates prompt-engineered investment strategies through rigorous backtesting and index compliance validation.
+Co-authored URECA research paper (Jain, Shah, Lee, Ha; supervisor Dr. Danling Jiang) examining whether prompt-engineered large language models can construct equity portfolios reflecting heterogeneous investor risk preferences. Using Perplexity API with WRDS Compustat data, three portfolio types were generated: High Risk, Low Risk, and No Risk Specification.
 
 ## Problem & Constraints
 
-Traditional portfolio construction relies on static factor models. This project explores whether large language models can synthesize heterogeneous financial signals into actionable allocation decisions while maintaining index compliance, risk constraints, and reproducible evaluation methodology.
+Can a system trained on textual information meaningfully contribute to portfolio construction? The study restricts to S&P 500 universe with dynamic index membership, no look-ahead bias, and full audit trail of prompts and outputs.
 
 <Callout title="Architecture" variant="architecture">
-The system follows a three-stage pipeline: data extraction (SQL/WRDS), LLM signal generation (Perplexity + Gemini), and portfolio validation with rebalancing simulation.
+WRDS SQL extraction → Perplexity API prompt engineering (3 risk profiles) → Portfolio Validation & Cleaning → Return Computation & Rebalancing → Performance metrics vs SPY benchmark.
 </Callout>
 
 ## Methodology
 
-- Built SQL pipelines to extract and clean WRDS equity fundamentals and returns data
-- Designed prompt templates for sector allocation, risk budgeting, and rebalancing decisions
-- Implemented Portfolio Validation and Cleaning framework ensuring complete index compliance
-- Executed Return Computation and Portfolio Rebalancing with drawdown-aware risk rules
-- Authored URECA research paper evaluating systematic Tech sector concentration patterns
+- Extracted adjusted prices and S&P 500 membership from Compustat via WRDS SQL
+- Prompted Perplexity for 25-stock portfolios with JSON output (high/low/no-risk specifications)
+- Validated tickers against index membership, renormalized weights, handled missing prices conservatively
+- Evaluated Apr 30 - Aug 6, 2025 with cumulative returns, Sharpe, beta, drawdowns, sector allocation
 
 ## Results & Metrics
 
-| Metric | Result |
-|--------|--------|
-| Data Source | WRDS institutional database |
-| LLM APIs | Perplexity + Gemini |
-| Output | URECA research paper |
-| Key Finding | Peak Sharpe ratios with systematic sector concentration |
+| Strategy | Total Return | Sharpe | Beta vs SPY |
+|----------|-------------|--------|-------------|
+| High Risk | 31.53% | 7.545 | -0.267 |
+| Low Risk | 3.87% | 4.795 | -0.138 |
+| No Risk Spec | 20.88% | 5.540 | 0.817 |
+| SPY (benchmark) | 2.97-8.30% | - | 1.000 |
+
+High-risk portfolios showed systematic Tech sector concentration. Performance driven primarily by sector/style exposures rather than persistent stock-selection alpha.
 
 ## Tech Stack
 
-Python, SQL, WRDS, Perplexity API, Gemini API, pandas, portfolio analytics
+Python, SQL, WRDS/Compustat, Perplexity API, pandas, matplotlib
 
 ## Future Work
 
-Extend to multi-asset universes, integrate real-time news sentiment, and benchmark against traditional factor models with walk-forward validation.
+Longer evaluation horizons, transaction cost modeling, hybrid LLM + quantitative risk control systems.
+
+## Links
+
+- [Stony Brook URECA](https://www.stonybrook.edu/ureca/)
+- [WRDS](https://wrds-www.wharton.upenn.edu/)

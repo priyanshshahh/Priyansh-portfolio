@@ -5,7 +5,7 @@ import { useTheme } from "@/context/ThemeContext";
 
 /**
  * Large 2.5D "study desk" hero illustration. The desk lamp is the day/night
- * toggle — clicking (or Enter/Space on) the lamp flips the theme. In night mode
+ * toggle - clicking (or Enter/Space on) the lamp flips the theme. In night mode
  * the lamp lights up and casts a warm glow; the monitors brighten and the whole
  * scene shifts to the navy/cyan palette.
  */
@@ -246,7 +246,7 @@ export function StudyDeskScene() {
           <path d="M327 302 Q316 288 308 292 Q318 300 327 302" fill={c.leaf} opacity="0.85" />
         </g>
 
-        {/* ============ Desk lamp — the THEME TOGGLE ============ */}
+        {/* ============ Desk lamp - the THEME TOGGLE ============ */}
         <motion.circle
           cx="306"
           cy="196"
@@ -327,7 +327,7 @@ export function StudyDeskScene() {
         animate={{ opacity: 1 }}
         transition={{ delay: 1.2, duration: 0.6 }}
       >
-        {isNight ? "lamp on — click to switch to day" : "click the lamp to go night"}
+        {isNight ? "lamp on - click to switch to day" : "click the lamp to go night"}
       </motion.p>
     </div>
   );

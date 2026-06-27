@@ -1,37 +1,48 @@
 ---
 title: Equiply Enrichment
-summary: React dashboard normalizing equipment data with OpenAI enrichment fallback.
-date: "2025"
-tags: [React, OpenAI API, Data Normalization]
+summary: Hospital capital equipment enrichment with 801-row CSV processing and OpenAI gap-fill.
+date: June 2026
+tags: [React, TypeScript, OpenAI API, CSV ETL]
 ---
 
 ## Executive Summary
 
-Equiply Enrichment is a React dashboard that ingests raw equipment data, normalizes fields through rule-based pipelines, and uses OpenAI API as an intelligent fallback for ambiguous or incomplete records.
+Built for the Equiply Hiring Tournament (NY Tech Week Hackathon), this React dashboard ingests hospital equipment CSV data, enriches rows with manufactured dates and device types via deterministic per-vendor serial decoders, and uses OpenAI only on deduplicated gap combos for token efficiency.
 
 ## Problem & Constraints
 
-Equipment datasets arrive in inconsistent formats with missing attributes. The system must balance automated normalization accuracy with cost-effective LLM enrichment for edge cases.
+Hospital asset data often has only manufacturer, model, and serial number. Capital planning committees need manufactured dates, device types, age tiers, and replacement recommendations.
+
+<Callout title="Architecture" variant="architecture">
+CSV upload → manufacturer normalization → per-vendor serial decoders → static device type map → OpenAI fallback (deduped combos) → capital planning tiers → enriched.csv export.
+</Callout>
 
 ## Methodology
 
-- Built React dashboard for data upload, review, and export workflows
-- Implemented rule-based normalization pipeline for standard equipment fields
-- Designed OpenAI fallback layer for records failing rule-based matching
-- Added human-in-the-loop review queue for low-confidence enrichments
+- Built 53 canonical manufacturer|model combos with deterministic date decoders
+- Mapped device types across 21 clinical categories
+- LLM called only on ~25 unique gap combos (~79% token savings vs row-by-row)
+- Added EOL/Review/Active replacement tiers for committee decisions
 
 ## Results & Metrics
 
-| Metric | Result |
-|--------|--------|
-| UI | React dashboard |
-| Enrichment | OpenAI API fallback |
-| Pipeline | Rule-based ETL |
+| Metric | Value |
+|--------|-------|
+| Total rows | 801 |
+| Local decoded dates | ~73.3% |
+| Device categories | 21 |
+| End of Life assets | 261 |
+| LLM combos sent | ~25 (deduped) |
 
 ## Tech Stack
 
-React, TypeScript, OpenAI API, Python ETL, CSV/JSON processing
+React, TypeScript, OpenAI API, client-side ETL, CSV export
 
 ## Future Work
 
-Batch processing API, confidence scoring models, and industry-specific taxonomy libraries.
+Backend persistence, multi-hospital tenancy, FHIR integration for asset metadata.
+
+## Links
+
+- [GitHub](https://github.com/priyanshshahh/equiply-enrichment)
+- [Documentation](https://github.com/priyanshshahh/equiply-enrichment/blob/main/DOCUMENTATION.md)

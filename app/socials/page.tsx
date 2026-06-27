@@ -20,7 +20,7 @@ export default function SocialsPage() {
         description="Research updates and quant notes on LinkedIn and X, and everything I ship on GitHub. Each feed scrolls on its own."
       />
 
-      {/* LinkedIn + X — two scrollable feeds */}
+      {/* LinkedIn + X - two scrollable feeds */}
       <div className="grid gap-6 lg:grid-cols-2">
         <Reveal>
           <LinkedInEmbeds />
@@ -37,7 +37,7 @@ export default function SocialsPage() {
         </Reveal>
       </div>
 
-      {/* GitHub — full width */}
+      {/* GitHub - full width */}
       <Reveal className="mt-6">
         <GitHubActivity />
       </Reveal>

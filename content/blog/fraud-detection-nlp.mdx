@@ -1,41 +1,31 @@
 ---
-title: "Catching Fake Job Postings at 96.5% Accuracy"
-summary: "A hybrid NLP pipeline combining TF-IDF with VADER sentiment to flag fraudulent job listings — feature design, the model that won, and the real-time Dash dashboard that made it usable."
-date: "2024-10-05"
-tags: ["NLP", "Scikit-Learn", "TF-IDF", "Dash"]
+title: "96.5% Fraud Detection with TF-IDF + VADER"
+summary: "How hybrid text features and a simple Naive Bayes classifier beat more complex approaches on imbalanced job posting fraud detection."
+date: "2024-10-01"
+tags: ["NLP", "Scikit-Learn", "Dash"]
 project: "fraudulent-job-posting-detection"
 ---
 
 ## The problem
 
-Fraudulent job postings are a real harm — they harvest personal data and money from people looking for work. The challenge is that scam listings are written to look legitimate. Surface keywords aren't enough; you need to model *how* the text is written, not just *what* it says.
+Fraudulent job postings exploit text patterns and metadata inconsistencies. The challenge: high accuracy on imbalanced classification with interpretable, real-time scoring.
 
-## Feature engineering
+## The hybrid feature stack
 
-The core insight was to combine two complementary signals:
+Instead of deep learning alone, I engineered:
 
-- **TF-IDF** captures the vocabulary and phrasing patterns of a posting.
-- **VADER sentiment** captures tone — scam posts often skew unnaturally positive ("urgent!", "guaranteed income!").
+- **TF-IDF** vectorization for lexical fraud patterns
+- **VADER sentiment** scores for emotional manipulation signals
+- **Metadata features** from posting structure
 
-<Callout title="Why hybrid features won" variant="architecture">
-TF-IDF alone confuses unusual-but-legitimate postings with fraud. Sentiment alone is too coarse. Together they separate "weird wording" from "manipulative tone" — and that combination is where the accuracy came from.
+<Callout title="Results" variant="results">
+Multinomial Naive Bayes achieved 96.5% accuracy - a reminder that well-engineered classical features often outperform black-box models on structured text tasks.
 </Callout>
 
-## The model
+## Deployment
 
-After comparing several classifiers, the pipeline landed at **96.5% accuracy**. The winning setup balanced precision and recall so the system flags fraud aggressively without burying legitimate listings in false positives.
+A real-time **Dash dashboard** visualizes fraud probabilities per posting, making the model actionable for screening workflows.
 
-| Metric | Result |
-|--------|--------|
-| Accuracy | 96.5% |
-| Features | TF-IDF + VADER |
-| Interface | Real-time Dash dashboard |
+## Takeaway
 
-## Making it usable
-
-A model in a notebook helps no one. I wrapped the pipeline in a **real-time Dash dashboard** where a posting can be pasted in and scored instantly, with the contributing signals shown — so the decision is explainable, not a black box.
-
-## Lessons
-
-- **Feature design beat model choice.** The hybrid feature set moved the needle more than swapping algorithms.
-- **Explainability is a feature.** Showing *why* something was flagged turned a classifier into a tool people trust.
+Feature engineering discipline matters more than model complexity for domain-specific text classification. Code at github.com/priyanshshahh/fraud-job-detection-pipeline.

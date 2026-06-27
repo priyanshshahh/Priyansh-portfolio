@@ -18,11 +18,11 @@ export default function BlogPage() {
       <SectionHeading
         eyebrow="Writing"
         title="Notes & project deep-dives"
-        description="Long-form write-ups explaining how my projects were built — the architecture, the trade-offs, and what I learned."
+        description="Long-form write-ups explaining how my projects were built - the architecture, the trade-offs, and what I learned."
       />
 
       {posts.length === 0 ? (
-        <p className="text-muted">No posts yet — check back soon.</p>
+        <p className="text-muted">No posts yet - check back soon.</p>
       ) : (
         <Reveal>
           <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">

@@ -7,11 +7,11 @@ tags: [Python, NLP, Scikit-Learn, Dash]
 
 ## Executive Summary
 
-A fraud detection system that classifies job postings as legitimate or fraudulent using hybrid text and metadata features, deployed with a real-time Dash dashboard for probability visualization.
+A fraud detection system classifying job postings as legitimate or fraudulent using hybrid text and metadata features, deployed with a real-time Dash dashboard for probability visualization.
 
 ## Problem & Constraints
 
-Online job platforms face growing volumes of scam postings. The system must achieve high accuracy on imbalanced text classification while providing interpretable fraud probability scores in real time.
+Online job platforms face growing scam volumes. The system must achieve high accuracy on imbalanced text classification while providing interpretable fraud scores.
 
 <Callout title="Results" variant="results">
 Achieved 96.5% classification accuracy using Multinomial Naive Bayes with hybrid TF-IDF and VADER sentiment features.
@@ -19,9 +19,8 @@ Achieved 96.5% classification accuracy using Multinomial Naive Bayes with hybrid
 
 ## Methodology
 
-- Architected end-to-end fraud detection pipeline with text and metadata feature extraction
 - Engineered hybrid TF-IDF vectorization combined with VADER sentiment scoring
-- Trained Multinomial Naive Bayes classifier with cross-validation
+- Trained Multinomial Naive Bayes with cross-validation on text + metadata features
 - Deployed real-time Dash dashboard for fraud probability visualization
 
 ## Results & Metrics
@@ -31,7 +30,7 @@ Achieved 96.5% classification accuracy using Multinomial Naive Bayes with hybrid
 | Accuracy | 96.5% |
 | Features | TF-IDF + VADER |
 | Classifier | Multinomial Naive Bayes |
-| Dashboard | Real-time Dash |
+| Code | [GitHub repo](https://github.com/priyanshshahh/fraud-job-detection-pipeline) |
 
 ## Tech Stack
 
@@ -39,4 +38,8 @@ Python, Scikit-Learn, NLTK/VADER, TF-IDF, Dash, Plotly
 
 ## Future Work
 
-Deep learning text classifiers, multi-language support, and API integration for job board platforms.
+Deep learning text classifiers, multi-language support, API integration for job boards.
+
+## Links
+
+- [GitHub](https://github.com/priyanshshahh/fraud-job-detection-pipeline)

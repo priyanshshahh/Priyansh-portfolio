@@ -1,41 +1,46 @@
 ---
 title: ClaimGuard-AI
-summary: Full-stack claims processing platform with DuckDB analytics backend.
-date: "2025"
-tags: [Next.js, React, Python, DuckDB]
+summary: Agentic pre-submission claims risk engine with Nebius Gemma, XGBoost, and DuckDB knapsack queue.
+date: May 2026
+tags: [Next.js, FastAPI, XGBoost, DuckDB, Nebius]
 ---
 
 ## Executive Summary
 
-ClaimGuard-AI is a full-stack platform for processing, validating, and analyzing insurance claims with a Next.js frontend and Python analytics backend powered by DuckDB for high-performance analytical queries.
+ClaimGuard-AI is an agentic pre-submission financial risk engine for healthcare revenue cycle management, submitted for the AIxBio Hackathon. It replaces static rule-based scrubbers with a three-layer intelligence stack: agentic extraction, quantitative scoring, and financial optimization.
 
 ## Problem & Constraints
 
-Claims processing requires fast ingestion of heterogeneous documents, rule-based validation, and analytical dashboards — all while maintaining audit trails and data privacy.
+Healthcare claims face denial risks from documentation gaps, procedure mismatches, and payer policy violations. Manual scrubbing is slow and misses expected financial loss prioritization.
 
 <Callout title="Architecture" variant="architecture">
-Next.js/React frontend → Python API layer → DuckDB analytical store → validation engine → reporting dashboard.
+Physician Note + CPT/ICD/Payer → Nebius Gemma JSON extraction → XGBoost denial probability → Expected Loss EL = V × P → DuckDB knapsack sort → Next.js auditor worklist.
 </Callout>
 
 ## Methodology
 
-- Designed modular full-stack architecture separating presentation, API, and analytics layers
-- Leveraged DuckDB for columnar analytical queries on claims datasets
-- Built validation pipelines for claim completeness and fraud flagging
-- Implemented responsive React dashboard for claims workflow management
+- Nebius Token Factory (Gemma 3 27B) extracts strict JSON clinical flags (Pydantic strict=True)
+- XGBoost classifier predicts denial probability with scale_pos_weight for imbalance
+- DuckDB analytical sort with bounded knapsack (capacity K/day) prioritizes by expected financial loss
+- Next.js frontend: Dashboard, Claims Queue, Agent Studio, Reports with PDF/CSV export
 
 ## Results & Metrics
 
-| Metric | Result |
-|--------|--------|
-| Stack | Full-stack Next.js + Python |
-| Database | DuckDB analytics engine |
-| Domain | Insurance claims processing |
+| Layer | Technology |
+|-------|-----------|
+| Extraction | Nebius Gemma 3 27B |
+| Scoring | XGBoost |
+| Optimization | DuckDB + Knapsack |
+| Frontend | Next.js 16 multi-page |
 
 ## Tech Stack
 
-Next.js, React, TypeScript, Python, DuckDB, REST APIs
+Next.js 16, FastAPI, XGBoost, DuckDB, Nebius API, Pydantic
 
 ## Future Work
 
-LLM-powered document extraction, automated adjuster routing, and regulatory compliance modules.
+90-day regional health system pilot, Supabase persistence, EHR FHIR R4 integration, NVIDIA Global Sprint deployment.
+
+## Links
+
+- [Nebius Token Factory](https://tokenfactory.nebius.com/)

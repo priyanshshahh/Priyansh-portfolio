@@ -1,41 +1,48 @@
 ---
 title: SignalRelay / Alphanet Core
-summary: Distributed network of Python AI agents for quantitative research and signal generation.
+summary: x402 USDC micropayment oracle for Polymarket Bayesian signals via Privy agent authorization.
 date: "2025"
-tags: [Python, AI Agents, Quant Research]
+tags: [Python, x402, Privy, FastAPI, Bayesian]
 ---
 
 ## Executive Summary
 
-SignalRelay is a distributed network of Python AI agents that collaborate on quantitative research, signal generation, and portfolio management tasks across multiple nodes.
+SignalRelay is an autonomous Polymarket sentiment oracle that earns USDC by selling its Bayesian trading edge. A Privy-authorized consumer agent spends USDC to hire it - one human approval, then fully autonomous micropayments over HTTP on Base Sepolia.
 
 ## Problem & Constraints
 
-Quantitative research workflows involve parallel signal discovery, backtesting, and portfolio rebalancing — requiring orchestration across distributed agents with fault tolerance.
+Downstream trading agents need probabilistic edge, not subscriptions. SignalRelay proves usage-based, per-signal machine commerce: any agent can discover the endpoint, pay $0.01 USDC on Base, and get a calibrated Bayesian signal.
 
 <Callout title="Architecture" variant="architecture">
-Agent coordinator → task queue → specialized worker agents (data, signal, portfolio) → shared signal store → execution relay.
+Provider (FastAPI + x402 ASGI) watches Polymarket + news → Bayesian posterior → paywalled GET /api/trade/{id}/rationale. Consumer (Privy TEE wallet) pays $0.01 USDC per signal via x402 facilitator on Base.
 </Callout>
 
 ## Methodology
 
-- Designed multi-agent architecture with role-specialized Python workers
-- Implemented signal relay protocol for cross-agent communication
-- Built shared datastore for alpha signals and backtest results
-- Orchestrated parallel research tasks with monitoring and retry logic
+- Extended polymarket-sentiment-agent with x402 payment middleware gating rationale endpoint
+- Built Privy Agent Authorization consumer with live on-chain USDC settlement ($0.01/call)
+- LLM used purely as NLP parser; deterministic Bayesian math computes edge
+- One-command demo script verifies balance debit and 200 OK alpha response
 
 ## Results & Metrics
 
 | Metric | Result |
 |--------|--------|
-| Architecture | Distributed multi-agent |
-| Domain | Alpha signal generation |
-| Language | Python |
+| Payment | $0.01 USDC/call |
+| Chain | Base Sepolia |
+| Auth | Privy TEE signing |
+| Settlement | x402 facilitator |
 
 ## Tech Stack
 
-Python, async task queues, agent frameworks, PostgreSQL/Parquet storage
+Python, FastAPI, x402, Privy, Base, USDC, Polymarket API
 
 ## Future Work
 
-Kubernetes orchestration, LLM-powered agent reasoning, and live trading integration.
+Mainnet deployment, multi-market signal catalog, agent discovery registry.
+
+## Links
+
+- [GitHub](https://github.com/priyanshshahh/signalrelay)
+- [Demo script](https://github.com/priyanshshahh/signalrelay/blob/main/DEMO_SCRIPT.md)
+- [Submission write-up](https://github.com/priyanshshahh/signalrelay/blob/main/SUBMISSION.md)

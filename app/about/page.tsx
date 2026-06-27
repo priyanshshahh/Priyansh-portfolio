@@ -5,6 +5,7 @@ import { NarrativePane } from "@/components/about/NarrativePane";
 import { SkillsBento } from "@/components/about/SkillsBento";
 import { ExperienceTabs } from "@/components/about/ExperienceTabs";
 import { Certifications } from "@/components/about/Certifications";
+import { CourseworkGrid } from "@/components/about/CourseworkGrid";
 import { GitHubCalendarWrapper } from "@/components/about/GitHubCalendarWrapper";
 
 export const metadata = {
@@ -33,12 +34,20 @@ export default function AboutPage() {
         description="Applied Mathematics student, research lead, and engineer at the intersection of ML, finance, and agentic AI."
       />
 
-      {/* Journey + Education — constrained prose so it reads like an essay */}
+      {/* Journey + Education - constrained prose so it reads like an essay */}
       <Reveal className="mt-8 max-w-3xl">
         <NarrativePane />
       </Reveal>
 
-      {/* Skills — full-width bento */}
+      {/* Coursework */}
+      <Reveal className="mt-24">
+        <SectionLabel eyebrow="Academic Foundation" title="Relevant Coursework" />
+        <div className="mt-8">
+          <CourseworkGrid />
+        </div>
+      </Reveal>
+
+      {/* Skills - full-width bento */}
       <Reveal className="mt-24">
         <SectionLabel eyebrow="What I work with" title="Skills Matrix" />
         <div className="mt-8">
@@ -46,7 +55,7 @@ export default function AboutPage() {
         </div>
       </Reveal>
 
-      {/* Work Experience — interactive timeline */}
+      {/* Work Experience - interactive timeline */}
       <Reveal className="mt-24">
         <SectionLabel eyebrow="My Professional Journey" title="Work Experience" />
         <div className="mt-8">

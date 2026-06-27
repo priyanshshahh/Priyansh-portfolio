@@ -1,42 +1,50 @@
 ---
-title: Automated Crypto Hedge Fund (CHF+ X)
-summary: End-to-end forecasting pipeline with walk-forward validation and HRP allocation.
-date: Aug 2025
-tags: [XGBoost, LSTM, vectorbt, Docker, APScheduler]
+title: Project CHF (Crypto Hedge Fund v2)
+summary: Leakage-safe 9-agent crypto quant pipeline with honest alpha_verified=false result.
+date: "2025"
+tags: [Python, LightGBM, XGBoost, MLflow, FastAPI]
 ---
 
 ## Executive Summary
 
-CHF+ X is an autonomous crypto hedge fund framework combining gradient boosting and deep learning forecasts with hierarchical risk parity allocation, orchestrated through containerized scheduling infrastructure.
+Project CHF is a reproducible, leakage-safe quantitative cryptocurrency research pipeline (frozen `v1.0-research-release`). It tests whether market and on-chain features can construct crypto portfolios outperforming BTC, ETH, BTC/ETH 50-50, and equal-weight universes after costs and realistic validation. The headline result is a deliberate negative: `alpha_verified = false`. Source: [github.com/priyanshshahh/chf-v2](https://github.com/priyanshshahh/chf-v2).
 
 ## Problem & Constraints
 
-Crypto markets demand multi-horizon forecasting across a Top-100 asset universe while accounting for feature decay, realistic trading frictions, and dynamic risk allocation under volatile regime shifts.
+A system designed to find alpha is easy to fool. CHF is built to reject unsupported alpha claims - surfacing candidates, forcing deterministic allocation, applying transaction costs, and comparing against four benchmarks before any alpha declaration.
 
 <Callout title="Architecture" variant="architecture">
-APScheduler ingests market and on-chain data → Feature engineering with decay tracking → XGBoost + LSTM ensemble → HRP/Top-K allocation → vectorbt backtesting engine.
+UniverseAgent → MarketDataAgent → OnChainAgent → FeatureAgent → LabelAgent → ModelAgent → AlphaResearchAgent → PortfolioAgent → BacktestAgent. Stages communicate only through file artifacts under `data/` (Parquet/JSON).
 </Callout>
 
 ## Methodology
 
-- Engineered walk-forward validation with Optuna hyperparameter tuning
-- Implemented dynamic Feature Decay tracking to down-weight declining signals
-- Deployed Hierarchical Risk Parity and Top-K allocation within vectorbt
-- Containerized pipeline with Docker and APScheduler for autonomous execution
+- Purged + embargoed walk-forward signal screening with Optuna hyperparameter tuning
+- Leakage-safe feature generation and exact forward calendar log-return labels (7/14/30d)
+- Deterministic prediction-only portfolio allocation (HRP, Top-K, vol-scaled)
+- Transaction-cost-aware backtesting with benchmark sanity checks
+- 27 test files, MLflow logging, content-hash reproducibility (`CHF_SEED=42`)
 
 ## Results & Metrics
 
-| Metric | Result |
-|--------|--------|
-| Universe | Top-100 crypto assets |
-| Models | XGBoost + LSTM ensemble |
-| Tuning | Optuna hyperparameter search |
-| Allocation | HRP + Top-K |
+| Metric | Value |
+|--------|-------|
+| Best Rank IC | 0.0275 (t-stat 7.10) |
+| Strongest backtest | linear_ridge/market_only/30d: 147.36% return, 0.7521 Sharpe |
+| Alpha verified | **false** (all candidates) |
+| Benchmark window | 2022-12-15 → 2026-03-24 |
+| BTC benchmark return | 305.50% |
 
 ## Tech Stack
 
-Python, XGBoost, LSTM, vectorbt, Optuna, Docker, APScheduler
+Python, LightGBM, XGBoost, vectorbt, MLflow, FastAPI, Streamlit, React, Docker, SQLite registry
 
 ## Future Work
 
-Live paper trading integration, on-chain alpha signal expansion, and regime-switching model ensembles.
+Point-in-time universe construction, SHAP visualization renders, React production build optimization, live paper trading (research only).
+
+## Links
+
+- [GitHub (chf-v2)](https://github.com/priyanshshahh/chf-v2)
+- [Research release](https://github.com/priyanshshahh/chf-v2/releases)
+- [Local setup (README)](https://github.com/priyanshshahh/chf-v2#running-locally)

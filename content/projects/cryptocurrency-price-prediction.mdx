@@ -1,33 +1,37 @@
 ---
 title: Cryptocurrency Price Prediction & Analysis
-summary: Multi-model forecasting with LSTM, ARIMA, and K-Means clustering visualization.
+summary: Multi-model crypto forecasting with LSTM, ARIMA, and Tableau dashboard.
 date: May 2024
 tags: [Scikit-Learn, TensorFlow, Tableau, APIs]
 ---
 
 ## Executive Summary
 
-An end-to-end machine learning pipeline forecasting digital asset prices using classical time series, deep learning, and clustering analysis with interactive Tableau visualization.
+An end-to-end machine learning pipeline forecasting digital asset prices using LSTM neural networks, ARIMA, regularized regressions, and K-Means clustering with an interactive Tableau dashboard.
 
 ## Problem & Constraints
 
-Cryptocurrency markets exhibit high volatility and non-stationarity, requiring comparison across multiple modeling paradigms with rigorous performance evaluation and visual analytics.
+Cryptocurrency markets exhibit high volatility and non-stationarity, requiring comparison across multiple modeling paradigms with rigorous evaluation.
+
+<Callout title="Architecture" variant="architecture">
+REST API ingestion → preprocessing notebooks → regression + time-series + deep learning models → clustering analysis → Tableau interactive dashboard.
+</Callout>
 
 ## Methodology
 
 - Automated historical market data ingestion via REST APIs
-- Implemented LSTM neural networks, ARIMA, and regularized regression models
+- Built regression models, LSTM networks, and ARIMA time-series forecasts
 - Applied K-Means clustering to uncover asset behavior patterns
 - Deployed interactive Tableau dashboard for model performance comparison
 
 ## Results & Metrics
 
-| Metric | Result |
-|--------|--------|
-| Models | LSTM, ARIMA, Regularized Regression |
-| Clustering | K-Means asset segmentation |
-| Visualization | Interactive Tableau dashboard |
-| Data Pipeline | Automated REST API ingestion |
+| Component | Approach |
+|-----------|----------|
+| Regression | Scikit-Learn regularized models |
+| Time series | LSTM + ARIMA |
+| Clustering | K-Means segmentation |
+| Dashboard | [Tableau live](https://us-east-1.online.tableau.com/t/priyanshshah-7ae2fd725b/views/Dasboard/Dashboard1) |
 
 ## Tech Stack
 
@@ -35,4 +39,10 @@ Python, Scikit-Learn, TensorFlow, Statsmodels, Tableau, REST APIs
 
 ## Future Work
 
-Ensemble model stacking, on-chain feature integration, and real-time prediction API.
+Ensemble stacking, on-chain feature integration, real-time prediction API.
+
+## Links
+
+- [Tableau dashboard](https://us-east-1.online.tableau.com/t/priyanshshah-7ae2fd725b/views/Dasboard/Dashboard1)
+- [GitHub](https://github.com/priyanshshahh/Crypto-Price-Prediction)
+- [Web dashboard (repo)](https://github.com/priyanshshahh/Crypto-Price-Prediction/tree/main/crypto-prediction-web)

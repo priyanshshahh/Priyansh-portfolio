@@ -20,7 +20,7 @@ export function MessageForm({ supabaseConfigured }: { supabaseConfigured: boolea
     // No backend configured → open the visitor's mail client instead.
     if (!supabaseConfigured) {
       const subject = encodeURIComponent(`Portfolio message from ${name || "a visitor"}`);
-      const bodyText = encodeURIComponent(`${body}\n\n— ${name || "Anonymous"}${email ? ` (${email})` : ""}`);
+      const bodyText = encodeURIComponent(`${body}\n\n - ${name || "Anonymous"}${email ? ` (${email})` : ""}`);
       window.location.href = `mailto:${siteConfig.email}?subject=${subject}&body=${bodyText}`;
       setSent(true);
       return;
@@ -54,7 +54,7 @@ export function MessageForm({ supabaseConfigured }: { supabaseConfigured: boolea
         </div>
         <h3 className="text-lg font-semibold text-foreground">Message sent</h3>
         <p className="mt-1 text-sm text-muted">
-          Thanks for reaching out — I&apos;ll get back to you soon.
+          Thanks for reaching out - I&apos;ll get back to you soon.
         </p>
         <button
           onClick={() => setSent(false)}
@@ -75,7 +75,7 @@ export function MessageForm({ supabaseConfigured }: { supabaseConfigured: boolea
         Get in Touch
       </h3>
       <p className="mt-1 text-sm text-muted">
-        Send me a message directly — collaborations, roles, or just to say hi.
+        Send me a message directly - collaborations, roles, or just to say hi.
       </p>
 
       <div className="mt-6 grid gap-4 sm:grid-cols-2">

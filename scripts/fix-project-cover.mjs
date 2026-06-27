@@ -1,4 +1,6 @@
-import type { Project } from "@/lib/data/projects";
+import fs from "fs";
+
+const out = `import type { Project } from "@/lib/data/projects";
 import {
   getMotif,
   coverGradient,
@@ -81,7 +83,7 @@ function renderMotif(motif: CoverMotifData) {
             <line key={i} x1={motif.data.cx} y1={motif.data.cy} x2={s.x} y2={s.y} stroke="white" strokeOpacity="0.3" strokeWidth="1.5" />
           ))}
           {motif.data.satellites.map((s, i) => (
-            <circle key={`n${i}`} cx={s.x} cy={s.y} r="9" fill="white" fillOpacity="0.7" />
+            <circle key={\`n\${i}\`} cx={s.x} cy={s.y} r="9" fill="white" fillOpacity="0.7" />
           ))}
           <circle cx={motif.data.cx} cy={motif.data.cy} r="16" fill="white" fillOpacity="0.95" />
         </g>
@@ -95,9 +97,9 @@ function renderMotif(motif: CoverMotifData) {
             const s = 17;
             return (
               <g key={i}>
-                <polygon points={`${c.x},${c.y - c.h} ${c.x + s * 2},${c.y - c.h + s} ${c.x},${c.y - c.h + s * 2} ${c.x - s * 2},${c.y - c.h + s}`} fill="white" fillOpacity="0.9" />
-                <polygon points={`${c.x - s * 2},${c.y - c.h + s} ${c.x},${c.y - c.h + s * 2} ${c.x},${c.y + s} ${c.x - s * 2},${c.y}`} fill="white" fillOpacity="0.4" />
-                <polygon points={`${c.x + s * 2},${c.y - c.h + s} ${c.x},${c.y - c.h + s * 2} ${c.x},${c.y + s} ${c.x + s * 2},${c.y}`} fill="white" fillOpacity="0.6" />
+                <polygon points={\`\${c.x},\${c.y - c.h} \${c.x + s * 2},\${c.y - c.h + s} \${c.x},\${c.y - c.h + s * 2} \${c.x - s * 2},\${c.y - c.h + s}\`} fill="white" fillOpacity="0.9" />
+                <polygon points={\`\${c.x - s * 2},\${c.y - c.h + s} \${c.x},\${c.y - c.h + s * 2} \${c.x},\${c.y + s} \${c.x - s * 2},\${c.y}\`} fill="white" fillOpacity="0.4" />
+                <polygon points={\`\${c.x + s * 2},\${c.y - c.h + s} \${c.x},\${c.y - c.h + s * 2} \${c.x},\${c.y + s} \${c.x + s * 2},\${c.y}\`} fill="white" fillOpacity="0.6" />
               </g>
             );
           })}
@@ -108,10 +110,10 @@ function renderMotif(motif: CoverMotifData) {
         <g stroke="white" fill="none">
           <circle cx={motif.data.cx} cy={motif.data.cy} r={motif.data.r} strokeOpacity="0.6" strokeWidth="1.5" />
           {[-40, 0, 40].map((o) => (
-            <ellipse key={`lat${o}`} cx={motif.data.cx} cy={motif.data.cy + o * 0.9} rx={Math.sqrt(Math.max(motif.data.r * motif.data.r - o * o, 1))} ry="8" strokeOpacity="0.3" />
+            <ellipse key={\`lat\${o}\`} cx={motif.data.cx} cy={motif.data.cy + o * 0.9} rx={Math.sqrt(Math.max(motif.data.r * motif.data.r - o * o, 1))} ry="8" strokeOpacity="0.3" />
           ))}
           {[0.4, 0.75].map((k, i) => (
-            <ellipse key={`lon${i}`} cx={motif.data.cx} cy={motif.data.cy} rx={motif.data.r * k} ry={motif.data.r} strokeOpacity="0.3" />
+            <ellipse key={\`lon\${i}\`} cx={motif.data.cx} cy={motif.data.cy} rx={motif.data.r * k} ry={motif.data.r} strokeOpacity="0.3" />
           ))}
           <line x1={motif.data.cx} y1={motif.data.cy - motif.data.r} x2={motif.data.cx} y2={motif.data.cy + motif.data.r} strokeOpacity="0.3" />
           {motif.data.dots.map((d, i) => (
@@ -140,21 +142,21 @@ export function ProjectCover({ project, className }: { project: Project; classNa
   const motifKind = getMotif(project);
   const { from, to } = coverGradient(project.slug);
   const motif = getCoverMotifData(project.slug, motifKind);
-  const gid = `grad-${project.slug}`;
+  const gid = \`grad-\${project.slug}\`;
 
   return (
-    <svg viewBox={`0 0 ${W} ${H}`} className={className} preserveAspectRatio="xMidYMid slice" role="img" aria-label={`${project.title} cover art`}>
+    <svg viewBox={\`0 0 \${W} \${H}\`} className={className} preserveAspectRatio="xMidYMid slice" role="img" aria-label={\`\${project.title} cover art\`}>
       <defs>
         <linearGradient id={gid} x1="0" y1="0" x2="1" y2="1">
           <stop offset="0%" stopColor={from} />
           <stop offset="100%" stopColor={to} />
         </linearGradient>
-        <pattern id={`dots-${project.slug}`} width="20" height="20" patternUnits="userSpaceOnUse">
+        <pattern id={\`dots-\${project.slug}\`} width="20" height="20" patternUnits="userSpaceOnUse">
           <circle cx="2" cy="2" r="1" fill="white" fillOpacity="0.08" />
         </pattern>
       </defs>
-      <rect width={W} height={H} fill={`url(#${gid})`} />
-      <rect width={W} height={H} fill={`url(#dots-${project.slug})`} />
+      <rect width={W} height={H} fill={\`url(#\${gid})\`} />
+      <rect width={W} height={H} fill={\`url(#dots-\${project.slug})\`} />
       {renderMotif(motif)}
       <text x="20" y="184" fontFamily="monospace" fontSize="11" letterSpacing="2" fill="white" fillOpacity="0.7">
         {MOTIF_LABEL[motifKind]}
@@ -162,3 +164,7 @@ export function ProjectCover({ project, className }: { project: Project; classNa
     </svg>
   );
 }
+`;
+
+fs.writeFileSync("components/projects/ProjectCover.tsx", out);
+console.log("written", out.length);

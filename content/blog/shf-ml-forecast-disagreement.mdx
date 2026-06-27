@@ -1,0 +1,30 @@
+---
+title: "Simulating Investor Disagreement with Machine Learning"
+summary: "SHF-ML measures forecast disagreement between accounting-only and market-only Random Forest models on the JKP dataset - winner of Project Champion award."
+date: "2026-01-15"
+tags: ["Empirical Asset Pricing", "HPC", "Random Forest"]
+project: "shf-ml-forecast-disagreement"
+---
+
+## The insight from MFD literature
+
+The Machine Forecast Disagreement paper argues that investor disagreement is hard to observe directly. Instead of surveying beliefs, represent investors as different ML models processing different information subsets. Forecast dispersion becomes a proxy for disagreement.
+
+## Our simplified framework
+
+Instead of 100 investors with random feature subsets, SHF-ML uses two:
+
+- **Investor A** - accounting information only
+- **Investor B** - market information only
+
+Both forecast next month's excess return (`ret_exc_lead1m`) on the JKP Monthly Dataset using Random Forests deployed on Seawulf HPC.
+
+## Disagreement measure
+
+For each stock-month: `Prediction_A(i,t) - Prediction_M(i,t)`
+
+High disagreement may predict lower future returns when short-selling is difficult - testing the MFD hypothesis on a reproducible HPC framework.
+
+## Takeaway
+
+This is a working replication framework, not yet a complete paper replication. The Project Champion award recognized the rigor of building reproducible infrastructure before claiming empirical results.

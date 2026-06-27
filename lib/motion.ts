@@ -1,6 +1,6 @@
 import type { Variants } from "framer-motion";
 
-// Shared easing — a smooth, slightly snappy ease-out used site-wide.
+// Shared easing - a smooth, slightly snappy ease-out used site-wide.
 export const easeOut: [number, number, number, number] = [
   0.21, 0.47, 0.32, 0.98,
 ];

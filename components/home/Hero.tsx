@@ -17,7 +17,7 @@ const ticker = [
 export function Hero() {
   return (
     <section className="grid min-h-[78vh] items-center gap-10 py-16 lg:grid-cols-[1.1fr_0.9fr]">
-      {/* Left — copy */}
+      {/* Left - copy */}
       <motion.div
         variants={staggerContainer}
         initial="hidden"
@@ -32,17 +32,17 @@ export function Hero() {
 
         <motion.h1
           variants={fadeUp}
-          className="max-w-3xl text-4xl font-semibold leading-[1.05] tracking-tight text-foreground md:text-6xl"
+          className="max-w-3xl text-4xl font-semibold leading-[1.15] tracking-tight text-foreground md:text-6xl"
         >
-          <span className="block text-muted">I build</span>
+          I build{" "}
           <span className="text-accent">
             <Typewriter
               options={{
                 strings: [...siteConfig.hero.typewriter],
                 autoStart: true,
                 loop: true,
-                delay: 40,
-                deleteSpeed: 25,
+                delay: 45,
+                deleteSpeed: 30,
               }}
             />
           </span>
@@ -83,7 +83,7 @@ export function Hero() {
         </motion.div>
       </motion.div>
 
-      {/* Right — interactive study desk */}
+      {/* Right - interactive study desk */}
       <motion.div
         initial={{ opacity: 0, scale: 0.94 }}
         animate={{ opacity: 1, scale: 1 }}

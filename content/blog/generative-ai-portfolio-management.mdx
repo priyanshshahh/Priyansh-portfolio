@@ -1,40 +1,35 @@
 ---
 title: "Can LLMs Manage a Stock Portfolio? My URECA Research"
-summary: "Building a SQL pipeline over WRDS data and pitting prompt-engineered LLM strategies (Gemini + Perplexity) against classical baselines — what worked, what didn't, and what the research paper concluded."
-date: "2025-10-10"
-tags: ["LLMs", "WRDS", "Prompt Engineering", "Research"]
+summary: "Co-authored URECA paper evaluating Perplexity prompt-engineered S&P 500 portfolios - High Risk Sharpe 7.545, sector tilts, and honest limits of LLM stock selection."
+date: "2025-12-15"
+tags: ["LLMs", "WRDS", "Perplexity", "URECA"]
 project: "generative-ai-portfolio-management"
 ---
 
 ## The question
 
-Large language models can summarize a 10-K, but can they make *allocation decisions* that hold up against classical quant baselines? That was the question behind my **URECA** (Undergraduate Research & Creative Activities) research paper.
+Can a prompt-engineered large language model construct equity portfolios that reflect different investor risk profiles and produce measurable differences in risk and return? Our URECA paper (Jain, Shah, Lee, Ha; supervisor Dr. Danling Jiang) tested this on S&P 500 equities via WRDS Compustat data.
 
-## The data pipeline
+## Three risk profiles
 
-Everything started with clean, point-in-time data. I built a **SQL pipeline over WRDS** (Wharton Research Data Services) to extract fundamentals and pricing without lookahead bias — the silent killer of finance research.
+We prompted Perplexity API to generate 25-stock portfolios under three specifications:
 
-<Callout title="Point-in-time discipline" variant="results">
-If your model "knows" a restated earnings number before it was public, your backtest is fiction. Most of the engineering effort went into making sure every feature was available at decision time — not after.
+- **High Risk** - aggressive growth, cyclical/tech exposure
+- **Low Risk** - defensive sectors, capital preservation
+- **No Risk Specification** - outperform SPY without explicit risk guidance
+
+## Verified results (Apr 30 - Aug 6, 2025)
+
+| Strategy | Total Return | Sharpe | Beta vs SPY |
+|----------|-------------|--------|-------------|
+| High Risk | 31.53% | **7.545** | -0.267 |
+| Low Risk | 3.87% | 4.795 | -0.138 |
+| No Risk Spec | 20.88% | 5.540 | 0.817 |
+
+<Callout title="Key finding" variant="results">
+Performance was driven primarily by systematic sector and style exposures - high-risk portfolios concentrated in Information Technology and Consumer Discretionary. LLMs encode risk appetite through sector tilts, not persistent stock-selection alpha.
 </Callout>
-
-## The strategies
-
-I evaluated **prompt-engineered strategies** driving two model families:
-
-- **Gemini** — for structured reasoning over fundamentals.
-- **Perplexity API** — for retrieval-grounded context on each name.
-
-Each strategy was specified as a prompt template that turned raw financial context into a ranked set of allocation decisions, which were then backtested against the same universe.
-
-## What I found
-
-- **Prompt design dominates.** The gap between a naive prompt and a carefully structured one was larger than the gap between models.
-- **Grounding matters.** Retrieval-augmented context reduced hallucinated reasoning about companies.
-- **LLMs are strong at narrative, weak at calibration.** They rank plausibly but are overconfident — position sizing still needs a classical risk layer.
-
-The paper's conclusion: LLMs are a genuinely useful **idea-generation and reasoning layer**, but they belong *inside* a disciplined quant pipeline, not in place of one.
 
 ## Takeaway
 
-The most transferable skill wasn't prompt-wrangling — it was treating an LLM like any other noisy estimator: measure it honestly, bound its confidence, and never let it size the trade alone.
+Generative AI can serve as a structured decision-support tool for retail portfolio construction when embedded in a disciplined validation framework. It is not an autonomous investment system.

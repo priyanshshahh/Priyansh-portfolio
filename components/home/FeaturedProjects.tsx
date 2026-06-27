@@ -3,14 +3,11 @@
 import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
 import Link from "next/link";
-import { projects } from "@/lib/data/projects";
-import { ProjectCard } from "@/components/projects/ProjectCard";
 import { fadeUp, staggerContainer, revealOnce } from "@/lib/motion";
 
-export function FeaturedProjects() {
+export function FeaturedProjects({ children }: { children: React.ReactNode }) {
   const ref = useRef<HTMLElement>(null);
   const inView = useInView(ref, revealOnce);
-  const featured = projects.filter((p) => p.featured).slice(0, 3);
 
   return (
     <motion.section
@@ -45,13 +42,7 @@ export function FeaturedProjects() {
         </motion.div>
       </div>
 
-      <div className="grid gap-5 md:grid-cols-3">
-        {featured.map((project) => (
-          <motion.div key={project.slug} variants={fadeUp}>
-            <ProjectCard project={project} className="h-full" />
-          </motion.div>
-        ))}
-      </div>
+      <div className="grid gap-5 md:grid-cols-3">{children}</div>
     </motion.section>
   );
 }

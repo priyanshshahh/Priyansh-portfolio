@@ -36,7 +36,7 @@ create policy "Owner can moderate entries"
   using ((auth.jwt() ->> 'email') = 'priyansh.shah@stonybrook.edu')
   with check ((auth.jwt() ->> 'email') = 'priyansh.shah@stonybrook.edu');
 
--- (existing) Users can delete their own entry — keep as-is from 001.
+-- (existing) Users can delete their own entry - keep as-is from 001.
 
 -- ----------------------------------------------------------------------------
 -- 2. Private contact messages (the "send me a message" inbox)

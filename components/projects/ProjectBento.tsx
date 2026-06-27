@@ -4,7 +4,6 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { projects } from "@/lib/data/projects";
 import { getCategory, type FilterCategory } from "@/lib/projectVisual";
-import { ProjectCard } from "./ProjectCard";
 import { cn } from "@/lib/utils";
 
 const FILTERS: ("All" | FilterCategory)[] = [
@@ -15,22 +14,26 @@ const FILTERS: ("All" | FilterCategory)[] = [
   "Full-Stack",
 ];
 
-export function ProjectBento() {
+export type ProjectBentoItem = {
+  slug: string;
+  node: React.ReactNode;
+};
+
+export function ProjectBento({ items }: { items: ProjectBentoItem[] }) {
   const [filter, setFilter] = useState<"All" | FilterCategory>("All");
 
   const shown =
     filter === "All"
-      ? projects
-      : projects.filter((p) => getCategory(p) === filter);
+      ? items
+      : items.filter((item) => getCategory(projects.find((p) => p.slug === item.slug)!) === filter);
 
   const countFor = (f: "All" | FilterCategory) =>
     f === "All"
-      ? projects.length
-      : projects.filter((p) => getCategory(p) === f).length;
+      ? items.length
+      : items.filter((item) => getCategory(projects.find((p) => p.slug === item.slug)!) === f).length;
 
   return (
     <>
-      {/* Filter bar */}
       <div className="mb-8 flex flex-wrap gap-2">
         {FILTERS.map((f) => {
           const active = filter === f;
@@ -54,22 +57,18 @@ export function ProjectBento() {
         })}
       </div>
 
-      {/* Grid */}
-      <motion.div
-        layout
-        className="grid items-stretch gap-6 sm:grid-cols-2 lg:grid-cols-3"
-      >
+      <motion.div layout className="grid items-stretch gap-6 sm:grid-cols-2 lg:grid-cols-3">
         <AnimatePresence mode="popLayout">
-          {shown.map((project) => (
+          {shown.map((item) => (
             <motion.div
-              key={project.slug}
+              key={item.slug}
               layout
               initial={{ opacity: 0, scale: 0.96 }}
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0, scale: 0.96 }}
               transition={{ duration: 0.25 }}
             >
-              <ProjectCard project={project} />
+              {item.node}
             </motion.div>
           ))}
         </AnimatePresence>

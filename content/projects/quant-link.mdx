@@ -1,41 +1,48 @@
 ---
 title: Quant-Link
-summary: Real-time multiplayer financial MMORPG with Unreal Engine 5 and SpacetimeDB.
+summary: SpacetimeDB multiplayer financial simulation with Rust backend and React Three Fiber.
 date: "2025"
-tags: [Unreal Engine 5, Rust, SpacetimeDB, React]
+tags: [SpacetimeDB, Rust, React Three Fiber, Gemini]
 ---
 
 ## Executive Summary
 
-Quant-Link is a real-time multiplayer financial MMORPG where players navigate markets, execute trades, and compete in a persistent game world — built on Unreal Engine 5 with SpacetimeDB for state synchronization and a React web client.
+Quant-Link is a real-time multiplayer 3D quantitative trading simulation built for the SpacetimeDB Launchpad Hackathon. Live at [quantlink.vercel.app](https://quantlink.vercel.app/). Live at [quantlink.vercel.app](https://quantlink.vercel.app/). Players walk a financial metropolis, trade live markets powered by Geometric Brownian Motion, purchase luxury assets, and learn from an AI quant mentor.
 
 ## Problem & Constraints
 
-Real-time multiplayer games require low-latency state sync, authoritative server logic, and cross-platform client access while embedding financial simulation mechanics.
+Financial education lacks engaging, real-time multiplayer experiences that teach trading mechanics through gameplay rather than static tutorials.
 
 <Callout title="Architecture" variant="architecture">
-UE5 game client ↔ SpacetimeDB (Rust modules) ↔ authoritative game state → React web client for portfolio/trading UI.
+SpacetimeDB Rust module (scheduled GBM ticks) ↔ real-time subscriptions ↔ React Three Fiber client + glassmorphic trading terminal + Gemini AI mentor.
 </Callout>
 
 ## Methodology
 
-- Architected multiplayer networking with SpacetimeDB for real-time state replication
-- Built UE5 game world with financial trading mechanics and player progression
-- Developed Rust backend modules for trade execution and market simulation
-- Created React web client for auxiliary trading and analytics interfaces
+- Built Rust SpacetimeDB module with scheduled reducers firing every 2 seconds for GBM market simulation
+- All game state in SpacetimeDB tables - no external database or message broker
+- React Three Fiber 3D world with WASD movement and interactive brokerage tower (press T)
+- Gemini RAG-style prompts include live portfolio and market context
 
 ## Results & Metrics
 
-| Metric | Result |
-|--------|--------|
-| Engine | Unreal Engine 5 |
-| Backend | SpacetimeDB + Rust |
-| Mode | Real-time multiplayer |
+| Feature | Detail |
+|---------|--------|
+| Market ticks | Every 2s (GBM) |
+| Backend | SpacetimeDB 2.4 (Rust) |
+| Client | React + Three.js (R3F) |
+| AI mentor | Google Gemini |
 
 ## Tech Stack
 
-Unreal Engine 5, Rust, SpacetimeDB, React, TypeScript
+SpacetimeDB, Rust, React, React Three Fiber, TypeScript, Gemini API
 
 ## Future Work
 
-Tournament modes, leaderboard systems, and mobile companion app.
+Hackathon deployment via `spacetime publish`, tournament modes, mobile companion.
+
+## Links
+
+- [Live demo](https://quantlink.vercel.app/)
+- [GitHub](https://github.com/priyanshshahh/quant-link)
+- [SpacetimeDB](https://spacetimedb.com/)

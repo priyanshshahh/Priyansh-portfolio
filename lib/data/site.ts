@@ -2,8 +2,9 @@ export const siteConfig = {
   name: "Priyansh Shah",
   title: "Quantitative Systems Architect & Data Scientist",
   description:
-    "Applied Mathematics student building production ML systems, quantitative finance pipelines, and agentic AI architectures.",
+    "Applied Mathematics student with a focus on machine learning and finance - building production ML systems, quantitative finance pipelines, and agentic AI architectures.",
   email: "priyansh.shah@stonybrook.edu",
+  phone: "917-680-5511",
   linkedin: "https://www.linkedin.com/in/-priyansh-shah/",
   github: "https://github.com/priyanshshahh",
   githubUsername: "priyanshshahh",
@@ -13,30 +14,32 @@ export const siteConfig = {
   location: "Stony Brook, NY",
   education: {
     school: "Stony Brook University",
-    degree: "B.S. in Applied Mathematics and Statistics",
-    period: "Aug 2022 – May 2026",
+    degree:
+      "B.S. in Applied Mathematics and Statistics, with a focus on machine learning and finance",
+    period: "Aug 2022 - May 2026",
     awards: [
-      "Dean's List (2023–2025)",
-      "Global Excellence Scholarship",
+      "Dean's List (2023-2025)",
+      "Global Excellence Award",
       "Excellent Research Award",
-      "Project Champion",
+      "Best Researcher Award",
+      "Project Champion (VIP 2026)",
     ],
   },
   hero: {
     greeting: "Hi, I'm Priyansh Shah",
     typewriter: [
-      "Quantitative Systems Architect",
-      "Data Scientist",
-      "ML Research Lead",
-      "Agentic AI Engineer",
+      "quantitative finance pipelines",
+      "leakage-safe ML systems",
+      "agentic AI architectures",
+      "forecast disagreement frameworks",
     ],
     subcopy:
-      "I architect end-to-end quantitative systems — from WRDS data pipelines and ensemble forecasting models to agentic LLM environments that extract actionable financial signals at scale.",
+      "From SHF-ML forecast disagreement on HPC clusters to leakage-safe crypto alpha pipelines and URECA prompt-engineered portfolios - I build quantitative systems that prioritize honest validation over flattering backtests.",
   },
   metrics: [
     { label: "Research Initiatives Led", value: "4+" },
     { label: "Students Managed", value: "16" },
-    { label: "Fraud Detection Accuracy", value: "96.5%" },
+    { label: "URECA High-Risk Sharpe", value: "7.545" },
     { label: "G-SWEP Selection Pool", value: "2,000+" },
   ],
   nav: [

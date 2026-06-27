@@ -24,7 +24,7 @@ export function ContactClient({
 
   return (
     <div className="grid gap-8 lg:grid-cols-[1fr_320px]">
-      {/* Left column — message + comments */}
+      {/* Left column - message + comments */}
       <div className="space-y-8">
         <MessageForm supabaseConfigured={supabaseConfigured} />
 
@@ -36,7 +36,7 @@ export function ContactClient({
                 Comments {isOwner && <span className="text-accent">· moderating</span>}
               </h3>
               <p className="text-sm text-muted">
-                Leave a public note about my work — shown after I approve it.
+                Leave a public note about my work - shown after I approve it.
               </p>
             </div>
           </div>
@@ -69,7 +69,7 @@ export function ContactClient({
         </div>
       </div>
 
-      {/* Right column — connect */}
+      {/* Right column - connect */}
       <aside className="lg:sticky lg:top-24 lg:self-start">
         <ConnectLinks />
       </aside>

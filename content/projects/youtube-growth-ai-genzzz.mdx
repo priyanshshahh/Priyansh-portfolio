@@ -1,42 +1,48 @@
 ---
 title: YouTube Growth AI Chatbot (Genzzz)
-summary: RAG chatbot trained on YouTube transcripts using LangChain, FAISS, and Gemini 2.5 Flash.
+summary: RAG chatbot on YouTube transcripts deployed on Hugging Face Spaces with Gemini 2.5 Flash.
 date: "2025"
-tags: [LangChain, FAISS, Gemini, RAG]
+tags: [LangChain, FAISS, Gemini, Gradio, HuggingFace]
 ---
 
 ## Executive Summary
 
-Genzzz is a RAG-powered chatbot trained on YouTube creator transcripts, enabling conversational access to growth strategies, content insights, and channel analytics through LangChain, FAISS vector search, and Gemini 2.5 Flash.
+Genzzz is a RAG-powered chatbot trained on YouTube creator transcripts, enabling conversational access to growth strategies, content insights, and channel analytics. Built in 7 days and deployed free on Hugging Face Spaces with Gemini 2.5 Flash.
 
 ## Problem & Constraints
 
-YouTube growth knowledge is scattered across hours of video content. The system must retrieve relevant transcript segments and generate accurate, context-aware responses efficiently.
+YouTube growth knowledge is scattered across hours of video content. The system retrieves relevant transcript segments and generates accurate, context-aware responses efficiently.
 
 <Callout title="Architecture" variant="architecture">
-Transcript ingestion → chunking + embedding → FAISS vector store → LangChain retrieval chain → Gemini 2.5 Flash generation.
+YT-DLP + Whisper transcripts → LangChain RecursiveCharacterTextSplitter → sentence-transformers embeddings → FAISS IndexFlatL2 → LangChain retrieval chain → Gemini 2.5 Flash → Gradio ChatInterface on HF Spaces.
 </Callout>
 
 ## Methodology
 
-- Extracted and processed YouTube transcripts into searchable chunks
-- Built FAISS vector index for semantic retrieval
-- Orchestrated RAG pipeline with LangChain retrieval chains
-- Deployed Gemini 2.5 Flash for low-latency response generation
+- Downloaded and cleaned YouTube transcripts (YT-DLP + Whisper fallback)
+- Chunked at 512-1024 chars with RecursiveCharacterTextSplitter
+- Embedded with all-MiniLM-L6-v2; built FAISS vector index
+- Deployed Gradio UI on Hugging Face with GOOGLE_API_KEY secret
+- Validated retrieval with natural language growth/strategy queries
 
 ## Results & Metrics
 
 | Metric | Result |
 |--------|--------|
-| Retrieval | FAISS vector search |
+| Retrieval | FAISS L2 search |
 | LLM | Gemini 2.5 Flash |
-| Framework | LangChain RAG |
-| Data | YouTube transcripts |
+| Deploy | HF Spaces (free) |
+| Demo | [Hugging Face Space](https://huggingface.co/spaces/notyodaduhh/Ytube_Growth) |
 
 ## Tech Stack
 
-Python, LangChain, FAISS, Gemini API, YouTube Transcript API
+Python, LangChain, FAISS, Gemini API, Gradio, Hugging Face Spaces, sentence-transformers
 
 ## Future Work
 
-Multi-channel support, real-time analytics integration, and fine-tuned embedding models.
+Multi-channel support, real-time analytics integration, fine-tuned embedding models.
+
+## Links
+
+- [Hugging Face demo](https://huggingface.co/spaces/notyodaduhh/Ytube_Growth)
+- [GitHub](https://github.com/priyanshshahh/Genzzz)

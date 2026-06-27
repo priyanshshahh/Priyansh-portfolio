@@ -1,0 +1,31 @@
+---
+title: "Machines Paying Machines: SignalRelay and x402"
+summary: "How Privy-authorized agents pay $0.01 USDC on Base for Bayesian Polymarket signals - usage-based machine commerce without API keys or subscriptions."
+date: "2025-11-01"
+tags: ["x402", "Privy", "AI Agents", "Polymarket"]
+project: "signalrelay-alphanet"
+---
+
+## The economic loop
+
+SignalRelay is a provider agent that earns USDC by selling Bayesian trading edge. A consumer agent spends USDC to hire it - one human approval via Privy, then fully autonomous micropayments over HTTP.
+
+```
+Human → approve once → Consumer Agent (Privy TEE wallet)
+  → GET /api/trade/1/rationale
+  → 402 Payment Required ($0.01 USDC, Base Sepolia)
+  → Privy signs → x402 facilitator settles
+  → 200 OK: trade rationale JSON
+```
+
+## Why not let the LLM pick prices?
+
+The LLM only labels news sentiment. Python computes a deterministic Bayesian posterior. Edge = posterior - market-implied prior. This separation is the core design principle - uncalibrated LLM price predictions are terrible; calibrated Bayesian math is not.
+
+## Verified on-chain
+
+Live demo confirms wallet debited exactly $0.01 USDC per call with on-chain settlement on Base Sepolia.
+
+## Takeaway
+
+Downstream trading agents need probabilistic edge, not subscriptions. x402 + Privy proves per-signal machine commerce is viable today.
