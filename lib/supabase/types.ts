@@ -14,3 +14,13 @@ export interface ContactMessage {
   body: string;
   created_at: string;
 }
+
+export interface Referral {
+  id: string;
+  name: string;
+  email: string;
+  company: string | null;
+  role: string | null;
+  body: string;
+  created_at: string;
+}

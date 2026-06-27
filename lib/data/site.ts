@@ -3,7 +3,7 @@ export const siteConfig = {
   title: "Quantitative Systems Architect & Data Scientist",
   description:
     "Applied Mathematics student with a focus on machine learning and finance - building production ML systems, quantitative finance pipelines, and agentic AI architectures.",
-  email: "priyansh.shah@stonybrook.edu",
+  email: "priyanshshah.2727@gmail.com",
   phone: "917-680-5511",
   linkedin: "https://www.linkedin.com/in/-priyansh-shah/",
   github: "https://github.com/priyanshshahh",

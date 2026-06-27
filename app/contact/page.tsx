@@ -3,7 +3,7 @@ import { SectionHeading } from "@/components/ui/SectionHeading";
 import { ContactClient } from "@/components/contact/ContactClient";
 import { siteConfig } from "@/lib/data/site";
 import { createClient } from "@/lib/supabase/server";
-import type { GuestbookEntry } from "@/lib/supabase/types";
+import type { ContactMessage, GuestbookEntry, Referral } from "@/lib/supabase/types";
 
 export const metadata = {
   title: "Contact",
@@ -17,6 +17,8 @@ export default async function ContactPage() {
 
   let user = null;
   let entries: GuestbookEntry[] = [];
+  let messages: ContactMessage[] = [];
+  let referrals: Referral[] = [];
   let isOwner = false;
 
   if (supabaseConfigured) {
@@ -26,7 +28,6 @@ export default async function ContactPage() {
       user = userData.user;
       isOwner = user?.email?.toLowerCase() === siteConfig.email.toLowerCase();
 
-      // RLS returns only approved rows to the public and all rows to the owner.
       const { data } = await supabase
         .from("guestbook")
         .select("*")
@@ -34,6 +35,23 @@ export default async function ContactPage() {
         .limit(50);
 
       entries = (data as GuestbookEntry[]) ?? [];
+
+      if (isOwner) {
+        const [{ data: messageData }, { data: referralData }] = await Promise.all([
+          supabase
+            .from("messages")
+            .select("*")
+            .order("created_at", { ascending: false })
+            .limit(25),
+          supabase
+            .from("referrals")
+            .select("*")
+            .order("created_at", { ascending: false })
+            .limit(25),
+        ]);
+        messages = (messageData as ContactMessage[]) ?? [];
+        referrals = (referralData as Referral[]) ?? [];
+      }
     } catch {
       // Supabase not reachable
     }
@@ -50,6 +68,8 @@ export default async function ContactPage() {
       <ContactClient
         user={user}
         entries={entries}
+        messages={messages}
+        referrals={referrals}
         supabaseConfigured={supabaseConfigured}
         isOwner={isOwner}
       />

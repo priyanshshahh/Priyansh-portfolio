@@ -48,7 +48,7 @@ NEXT_PUBLIC_SUPABASE_ANON_KEY=your-supabase-anon-key
 1. Create a project at [supabase.com](https://supabase.com).
 2. In the SQL editor, run the migrations in order:
    - `supabase/migrations/001_guestbook.sql`
-   - `supabase/migrations/002_moderation_and_messages.sql`
+   - `supabase/migrations/002_moderation_and_messages.sql, then 003_referrals_and_owner_email.sql`
 3. In **Authentication → Providers**, enable **GitHub** and **Google**, and set the redirect URL to `https://<your-domain>/auth/callback` (and `http://localhost:3000/auth/callback` for local dev).
 4. The **owner email** used to moderate comments and read messages is set in the migration policies and in `lib/data/site.ts` (`siteConfig.email`). Update both if yours differs. Sign in with that account to see **Approve** buttons on pending comments.
 

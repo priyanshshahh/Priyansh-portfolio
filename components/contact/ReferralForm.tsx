@@ -5,9 +5,11 @@ import { createClient } from "@/lib/supabase/client";
 import { Button } from "@/components/ui/Button";
 import { siteConfig } from "@/lib/data/site";
 
-export function MessageForm({ supabaseConfigured }: { supabaseConfigured: boolean }) {
+export function ReferralForm({ supabaseConfigured }: { supabaseConfigured: boolean }) {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
+  const [company, setCompany] = useState("");
+  const [role, setRole] = useState("");
   const [body, setBody] = useState("");
   const [loading, setLoading] = useState(false);
   const [sent, setSent] = useState(false);
@@ -17,11 +19,12 @@ export function MessageForm({ supabaseConfigured }: { supabaseConfigured: boolea
     e.preventDefault();
     if (!body.trim()) return;
 
-    // No backend configured → open the visitor's mail client instead.
     if (!supabaseConfigured) {
-      const subject = encodeURIComponent(`Portfolio message from ${name || "a visitor"}`);
-      const bodyText = encodeURIComponent(`${body}\n\n - ${name || "Anonymous"}${email ? ` (${email})` : ""}`);
-      window.location.href = `mailto:${siteConfig.email}?subject=${subject}&body=${bodyText}`;
+      const subject = encodeURIComponent(`Portfolio referral from ${name || "a visitor"}`);
+      const text = encodeURIComponent(
+        `${body}\n\nCompany: ${company || "n/a"}\nRole: ${role || "n/a"}\n\n - ${name || "Anonymous"}${email ? ` (${email})` : ""}`,
+      );
+      window.location.href = `mailto:${siteConfig.email}?subject=${subject}&body=${text}`;
       setSent(true);
       return;
     }
@@ -29,9 +32,11 @@ export function MessageForm({ supabaseConfigured }: { supabaseConfigured: boolea
     setLoading(true);
     setError(null);
     const supabase = createClient();
-    const { error: insertError } = await supabase.from("messages").insert({
+    const { error: insertError } = await supabase.from("referrals").insert({
       name: name.trim() || "Anonymous",
       email: email.trim(),
+      company: company.trim() || null,
+      role: role.trim() || null,
       body: body.trim(),
     });
     setLoading(false);
@@ -40,60 +45,53 @@ export function MessageForm({ supabaseConfigured }: { supabaseConfigured: boolea
       setError(insertError.message);
       return;
     }
+
     setSent(true);
     setName("");
     setEmail("");
+    setCompany("");
+    setRole("");
     setBody("");
   };
 
   if (sent) {
     return (
-      <div className="rounded-2xl border border-border bg-[var(--card-bg)] p-8 text-center backdrop-blur-sm">
-        <div className="mx-auto mb-3 flex h-12 w-12 items-center justify-center rounded-full bg-accent/10 text-accent text-xl">
-          ✓
-        </div>
-        <h3 className="text-lg font-semibold text-foreground">Message sent</h3>
-        <p className="mt-1 text-sm text-muted">
-          Thanks for reaching out - I&apos;ll get back to you soon.
+      <div className="rounded-xl border border-accent/30 bg-accent/[0.06] p-4">
+        <p className="text-sm text-foreground">
+          Referral received. Thank you for thinking of me.
         </p>
         <button
           onClick={() => setSent(false)}
-          className="mt-4 font-mono text-xs text-accent hover:underline"
+          className="mt-2 font-mono text-xs text-accent hover:underline"
         >
-          Send another →
+          Submit another →
         </button>
       </div>
     );
   }
 
   return (
-    <form
-      onSubmit={handleSubmit}
-      className="rounded-2xl border border-border bg-[var(--card-bg)] p-6 backdrop-blur-sm md:p-8"
-    >
-      <h3 className="font-mono text-lg font-semibold text-foreground">
-        Get in Touch
-      </h3>
-      <p className="mt-1 text-sm text-muted">
-        Send me a message directly - collaborations, roles, or just to say hi.
+    <form onSubmit={handleSubmit} className="space-y-4">
+      <p className="text-sm text-muted">
+        Know a role or team I should talk to? Send a referral and I will follow up.
       </p>
 
-      <div className="mt-6 grid gap-4 sm:grid-cols-2">
+      <div className="grid gap-4 sm:grid-cols-2">
         <div>
           <label className="mb-1.5 block font-mono text-xs uppercase tracking-wider text-muted">
-            Name
+            Your name
           </label>
           <input
             value={name}
             onChange={(e) => setName(e.target.value)}
             maxLength={120}
-            placeholder="Your secret identity"
+            placeholder="Who is referring"
             className="w-full rounded-xl border border-border bg-surface/50 px-4 py-3 font-mono text-sm text-foreground placeholder:text-muted/50 focus:border-accent focus:outline-none"
           />
         </div>
         <div>
           <label className="mb-1.5 block font-mono text-xs uppercase tracking-wider text-muted">
-            Email
+            Your email
           </label>
           <input
             type="email"
@@ -107,28 +105,53 @@ export function MessageForm({ supabaseConfigured }: { supabaseConfigured: boolea
         </div>
       </div>
 
-      <div className="mt-4">
+      <div className="grid gap-4 sm:grid-cols-2">
+        <div>
+          <label className="mb-1.5 block font-mono text-xs uppercase tracking-wider text-muted">
+            Company
+          </label>
+          <input
+            value={company}
+            onChange={(e) => setCompany(e.target.value)}
+            maxLength={200}
+            placeholder="Where is the opportunity"
+            className="w-full rounded-xl border border-border bg-surface/50 px-4 py-3 font-mono text-sm text-foreground placeholder:text-muted/50 focus:border-accent focus:outline-none"
+          />
+        </div>
+        <div>
+          <label className="mb-1.5 block font-mono text-xs uppercase tracking-wider text-muted">
+            Role
+          </label>
+          <input
+            value={role}
+            onChange={(e) => setRole(e.target.value)}
+            maxLength={200}
+            placeholder="Title or team"
+            className="w-full rounded-xl border border-border bg-surface/50 px-4 py-3 font-mono text-sm text-foreground placeholder:text-muted/50 focus:border-accent focus:outline-none"
+          />
+        </div>
+      </div>
+
+      <div>
         <label className="mb-1.5 block font-mono text-xs uppercase tracking-wider text-muted">
-          Message
+          Details
         </label>
         <textarea
           value={body}
           onChange={(e) => setBody(e.target.value)}
           maxLength={2000}
-          rows={5}
-          placeholder="Your message goes here. Ask me anything 👀"
+          rows={4}
+          placeholder="Context, link, or why this is a fit"
           className="w-full rounded-xl border border-border bg-surface/50 px-4 py-3 font-mono text-sm text-foreground placeholder:text-muted/50 focus:border-accent focus:outline-none"
         />
         <p className="mt-1 text-right font-mono text-xs text-muted">{body.length}/2000</p>
       </div>
 
-      {error && <p className="mt-2 text-sm text-red-400">{error}</p>}
+      {error && <p className="text-sm text-red-400">{error}</p>}
 
-      <div className="mt-4">
-        <Button type="submit" size="lg" disabled={loading || !body.trim()}>
-          {loading ? "Sending..." : "Send Message →"}
-        </Button>
-      </div>
+      <Button type="submit" disabled={loading || !body.trim()}>
+        {loading ? "Sending..." : "Send Referral →"}
+      </Button>
     </form>
   );
 }
